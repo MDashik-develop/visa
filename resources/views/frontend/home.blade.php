@@ -53,19 +53,43 @@
               <h1 class="text-black text-[30px] font-bold my-5">Enabling Your Immigration<br>Successfully</h1>
             </div>
 
-            <div class="categories-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-5">
-                <div class="category-item border border-gray-300 rounded-xl p-4">
-                    <img src="https://placehold.co/300x200" alt="Category 1" class="w-full rounded-xl" />
-                    <h3 class="text-start text-lg font-bold mt-2">Category 1</h3>
-                    <a href="#category1" class="w-full py-2 border-t-2 border-black">Read More</a>
-                </div>
-                <div class="category-item border border-gray-300 rounded-xl p-4">
-                    <img src="https://placehold.co/300x200" alt="Category 2" class="w-full rounded-xl" />
-                    <h3 class="text-start text-lg font-bold mt-2">Category 2</h3>
-                </div>
-                <div class="category-item">
-                    <img src="https://placehold.co/300x200" alt="Category 3" class="w-full rounded-xl" />
-                    <h3 class="text-start text-lg font-bold mt-2">Category 3</h3>
+            <div class="flex justify-center items-center">
+                <div class="categories-list w-full grid max-w-lg   grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-10">
+                    <div class="category-item-custom h-100  border border-gray-300 rounded-xl">
+                        <img src="https://placehold.co/300x200" alt="Category 1" class="w-full" />
+                        <h3 class="text-start text-lg font-bold my-5 px-1">Category 1</h3>
+                        <div class="w-full py-4 text-center text-[14px] font-bold text-black rounded-lg border-t-2 border-gray-300">
+                            <a href="#category1">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="category-item-custom h-100  border border-gray-300 rounded-xl">
+                        <img src="https://placehold.co/300x200" alt="Category 1" class="w-full" />
+                        <h3 class="text-start text-lg font-bold my-5 px-1">Category 1</h3>
+                        <div class="w-full py-4 text-center text-[14px] font-bold text-black rounded-lg border-t-2 border-gray-300">
+                            <a href="#category1">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="category-item-custom h-100  border border-gray-300 rounded-xl">
+                        <img src="https://placehold.co/300x200" alt="Category 1" class="w-full" />
+                        <h3 class="text-start text-lg font-bold my-5 px-1">Category 1</h3>
+                        <div class="w-full py-4 text-center text-[14px] font-bold text-black rounded-lg border-t-2 border-gray-300">
+                            <a href="#category1">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="category-item-custom h-100  border border-gray-300 rounded-xl">
+                        <img src="https://placehold.co/300x200" alt="Category 1" class="w-full" />
+                        <h3 class="text-start text-lg font-bold my-5 px-1">Category 1</h3>
+                        <div class="w-full py-4 text-center text-[14px] font-bold text-black rounded-lg border-t-2 border-gray-300">
+                            <a href="#category1">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="category-item-custom h-100  border border-gray-300 rounded-xl">
+                        <img src="https://placehold.co/300x200" alt="Category 1" class="w-full" />
+                        <h3 class="text-start text-lg font-bold my-5 px-1">Category 1</h3>
+                        <div class="w-full py-4 text-center text-[14px] font-bold text-black rounded-lg border-t-2 border-gray-300">
+                            <a href="#category1">Learn More</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
