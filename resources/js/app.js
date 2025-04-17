@@ -24,5 +24,7 @@ Alpine.start();
             autoplay: true,
             autoplaySpeed: 3000,
             arrows: true,
+            prevArrow: $('.slick-prev'),
+            nextArrow: $('.slick-next'),
         });
     });
