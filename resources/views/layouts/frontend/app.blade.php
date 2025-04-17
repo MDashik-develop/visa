@@ -17,21 +17,20 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 overflow-x-hidden">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 ">
             {{-- @include('layouts.navigation') --}}
 
             <!-- Page Heading -->
-            @include('layouts.frontend.header')
+                @include('layouts.frontend.header')
 
             <!-- Page Content -->
-            <main>
-                @yield('content')
-            </main>
+                <main>
+                    @yield('content')
+                </main>
 
             <!-- Page Footer -->
-            @include('layouts.frontend.footer')
+                @include('layouts.frontend.footer')
         </div>
     </body>
     
-    @stack('js')
 </html>
