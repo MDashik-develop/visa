@@ -1,1 +1,2 @@
  npm install slick-carousel jquery
+ composer require blade-ui-kit/blade-icons

@@ -23,9 +23,24 @@ Alpine.start();
             slidesToShow: 1,
             autoplay: true,
             autoplaySpeed: 3000,
-            arrows: false,
-            fade: true,
+            // arrows: false,
+            // fade: true,
             prevArrow: $(".prev-arrow"),
             nextArrow: $(".next-arrow"),   
+        });
+    });
+    
+    $(document).ready(function () {
+        $(".slider-service").slick({
+            // dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 2,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            // arrows: false,
+            // fade: true,
+            prevArrow: $(".prev-arrow-service"),
+            nextArrow: $(".next-arrow-service"),   
         });
     });
