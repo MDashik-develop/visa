@@ -13,7 +13,13 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-                inter: ['Figtree', 'sans-serif'], 
+                inter: ['Figtree', 'sans-serif'],
+                poppins: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+                primary: '#2563eb',
+                secondary: '#1e40af',
+                accent: '#3b82f6',
             },
         },
     },
