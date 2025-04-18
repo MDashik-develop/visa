@@ -4,6 +4,50 @@
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
 
+
+    /* Custom marquee animation */
+    @keyframes marquee1 {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-35%);
+        }
+      }
+    @keyframes marquee2 {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee {
+          display: inline-block;
+          white-space: nowrap;
+          animation: marquee2 20s linear infinite;
+      }
+      .marquee-wrapper-1 {
+        overflow: hidden;
+        width: 100%;
+        background-color: #b91c1c; /* Tailwind red-700 */
+        color: white;
+        padding: 0.5rem 1rem;
+            .marquee {
+                animation: marquee1 10s linear infinite;
+                span{
+                    font-size: 20px;
+                }
+            }
+      }
+      .marquee-wrapper {
+        overflow: hidden;
+        width: 100%;
+        background-color: #b91c1c; /* Tailwind red-700 */
+        color: white;
+        padding: 0.5rem 1rem;
+      }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
