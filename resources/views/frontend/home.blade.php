@@ -71,7 +71,7 @@
         </div>
 
         <div class="flex justify-center items-center my-10">
-            <div class="slider-logos-list w-full max-w-7xl px-10">
+            <div class="slider-logos w-full max-w-7xl px-10">
                 <div class="logo-item px-2">
                     <img src="https://placehold.co/100x80" alt="Client Logo 1" class="w-full" />
                 </div>

@@ -46,8 +46,8 @@ Alpine.start();
     });    
 
     $(document).ready(function () {
-        $(".slider-logos-list").slick({
-            // dots: true,
+        $(".slider-logos").slick({
+            dots: false,
             infinite: true,
             speed: 500,
             slidesToShow: 6,
@@ -59,8 +59,6 @@ Alpine.start();
                     settings: {
                         slidesToShow: 4,
                         slidesToScroll: 1,
-                        infinite: true,
-                        dots: true
                     }
                 },
                 {
@@ -81,18 +79,3 @@ Alpine.start();
             // arrows: false,
         });
     });
-
-    const flyIcon = document.getElementById('fly-icon');
-    const wrapper = document.getElementById('fly-icon-wrapper');
-
-    function moveFlyIcon(e) {
-        const rect = wrapper.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Move slightly depending on mouse position
-        const offsetX = (x / rect.width - 0.5) * 20; // max ±10px
-        const offsetY = (y / rect.height - 0.5) * 20;
-
-        flyIcon.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-    }
