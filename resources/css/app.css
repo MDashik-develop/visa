@@ -48,6 +48,29 @@
         padding: 0.5rem 1rem;
       }
 
+
+
+
+
+
+
+    /* Scrollbar for sidebar */
+    aside::-webkit-scrollbar {
+      width: 6px;
+    }
+    aside::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    aside::-webkit-scrollbar-thumb {
+      background-color: rgba(100, 116, 139, 0.5);
+      border-radius: 3px;
+    }
+
+
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
