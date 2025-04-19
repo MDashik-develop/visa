@@ -11,6 +11,7 @@ window.Alpine = Alpine;
 Alpine.start();
 
 
+
 // slick carousel
     window.$ = $;
     window.jQuery = $;
@@ -76,6 +77,5 @@ Alpine.start();
                     }
                 }
             ],
-            // arrows: false,
         });
     });
