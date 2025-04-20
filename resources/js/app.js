@@ -2,6 +2,13 @@
     import "slick-carousel";
     import $ from "jquery";
 
+// summernote
+    import 'summernote/dist/summernote-lite.css';
+    import 'summernote/dist/summernote-lite.js';
+
+    window.$ = window.jQuery = $;
+
+
 import "./bootstrap";
 
 import Alpine from "alpinejs";
@@ -77,5 +84,16 @@ Alpine.start();
                     }
                 }
             ],
+        });
+    });
+
+
+// summernote
+    
+    $(document).ready(function() {
+        $('.longDescription').summernote({
+            placeholder: 'Write product description...',
+            tabsize: 2,
+            height: 200
         });
     });

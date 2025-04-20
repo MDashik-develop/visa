@@ -5,6 +5,7 @@
 use App\Http\Controllers\Backend\VisaController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\CountriesController;
+use App\Http\Controllers\backend\VisaTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -27,12 +28,12 @@ use App\Http\Middleware\AdminMiddleware;
         Route::delete('/admin/user/{id}/delete', [BackendController::class, 'destroy'])->name('admin.user.delete');
 
         // =============== Visa ===============
-        Route::get('/admin/visa', [VisaController::class, 'index'])->name('admin.visa.index');
-        Route::get('/admin/visa/create', [VisaController::class, 'create'])->name('admin.visa.create');
-        Route::post('/admin/visa/store', [VisaController::class, 'store'])->name('admin.visa.store');
-        Route::get('/admin/visa/{id}/edit', [VisaController::class, 'edit'])->name('admin.visa.edit');
-        Route::put('/admin/visa/{id}/update', [VisaController::class, 'update'])->name('admin.visa.update');
-        Route::delete('/admin/visa/{id}/delete', [VisaController::class, 'destroy'])->name('admin.visa.delete');
+        Route::get('/admin/visa', [VisaTypeController::class, 'index'])->name('admin.visa.index');
+        Route::get('/admin/visa/create', [VisaTypeController::class, 'create'])->name('admin.visa.create');
+        Route::post('/admin/visa/store', [VisaTypeController::class, 'store'])->name('admin.visa.store');
+        Route::get('/admin/visa/{id}/edit', [VisaTypeController::class, 'edit'])->name('admin.visa.edit');
+        Route::put('/admin/visa/{id}/update', [VisaTypeController::class, 'update'])->name('admin.visa.update');
+        Route::delete('/admin/visa/{id}/delete', [VisaTypeController::class, 'destroy'])->name('admin.visa.delete');
 
         // =============== Cuntries ===============
         Route::get('/admin/countries', [CountriesController::class, 'index'])->name('admin.countries.index');

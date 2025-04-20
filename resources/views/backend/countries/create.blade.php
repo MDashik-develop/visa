@@ -32,16 +32,18 @@
 
                     <div class="mb-4">
                         <label for="description" class="block text-gray-700">Country Description</label>
-                        <input type="text" name="description" id="description" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        {{-- <input type="text" name="description" id="description" required
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"> --}}
+                            <textarea id="description" name="description" class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+
                     </div>
 
                     <div class="mb-4">
                         <label for="status" class="block text-gray-700">Role</label>
                         <select name="status" id="status"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="0">Active</option>
-                            <option value="1">Inactive</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
 
