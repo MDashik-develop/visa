@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('visa_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->text('requirements')->nullable();
-            $table->decimal('fee', 10, 2)->default(0.00);
-            $table->string('processing_time')->nullable(); // like "7-10 days"
+            $table->string('countries'); // List of countries
+            $table->longText('description')->nullable(); // Detailed description
+            $table->longText('eligibility')->nullable(); // Eligibility criteria
+            $table->longText('documents')->nullable(); // Required documents
+            $table->string('processing_time')->nullable(); // Processing time (e.g., "7-10 days")
             $table->timestamps();
         });
     }

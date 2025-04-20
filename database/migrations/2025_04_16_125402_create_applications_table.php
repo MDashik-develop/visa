@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('visa_type_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['pending', 'processing', 'approved', 'rejected'])->default('pending');
-            $table->timestamp('submitted_at')->nullable();
-            $table->timestamp('approved_at')->nullable();
-            $table->text('rejected_reason')->nullable();
-            $table->timestamps();
+            $table->integer('user_id'); // User ID as integer
+            $table->integer('visa_type_id'); // Visa Type ID as integer
+            $table->string('name'); // Applicant's Name
+            $table->string('phone'); // Applicant's Phone
+            $table->string('mail'); // Applicant's Email
+            $table->text('message')->nullable(); // Additional Message
+            // $table->enum('status', ['pending', 'processing', 'approved', 'rejected'])->default('pending'); // Application Status
+            $table->timestamp('submitted_at')->nullable(); // Submission Timestamp
+            // $table->timestamp('approved_at')->nullable(); // Approval Timestamp
+            $table->text('rejected_reason')->nullable(); // Reason for Rejection
+            $table->timestamps(); // Created and Updated Timestamps
         });
     }
 

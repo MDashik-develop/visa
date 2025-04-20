@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Countries;
 use App\Models\Visa;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,17 @@ class VisaController extends Controller
 
     // create visa
     public function create(){
-        return view('backend.visa.create');
+        
+        $countries = Countries::where('status', 1);
+        
+        return view('backend.visa.create', compact('countries'));
     }
+
+    // store visa
+    public function store(Request $request){
+
+        // $request->validate([
+    }
+            
     
 }

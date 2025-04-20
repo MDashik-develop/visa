@@ -27,12 +27,12 @@ use App\Http\Middleware\AdminMiddleware;
         Route::delete('/admin/user/{id}/delete', [BackendController::class, 'destroy'])->name('admin.user.delete');
 
         // =============== Visa ===============
-        Route::get('/admin/visa', [VisaController::class, 'visa'])->name('admin.visa.index');
-        Route::get('/admin/visa/create', [BackendController::class, 'createVisa'])->name('admin.visa.create');
-        Route::post('/admin/visa/store', [BackendController::class, 'storeVisa'])->name('admin.visa.store');
-        Route::get('/admin/visa/{id}/edit', [BackendController::class, 'editVisa'])->name('admin.visa.edit');
-        Route::put('/admin/visa/{id}/update', [BackendController::class, 'updateVisa'])->name('admin.visa.update');
-        Route::delete('/admin/visa/{id}/delete', [BackendController::class, 'destroyVisa'])->name('admin.visa.delete');
+        Route::get('/admin/visa', [VisaController::class, 'index'])->name('admin.visa.index');
+        Route::get('/admin/visa/create', [VisaController::class, 'create'])->name('admin.visa.create');
+        Route::post('/admin/visa/store', [VisaController::class, 'store'])->name('admin.visa.store');
+        Route::get('/admin/visa/{id}/edit', [VisaController::class, 'edit'])->name('admin.visa.edit');
+        Route::put('/admin/visa/{id}/update', [VisaController::class, 'update'])->name('admin.visa.update');
+        Route::delete('/admin/visa/{id}/delete', [VisaController::class, 'destroy'])->name('admin.visa.delete');
 
         // =============== Cuntries ===============
         Route::get('/admin/countries', [CountriesController::class, 'index'])->name('admin.countries.index');
