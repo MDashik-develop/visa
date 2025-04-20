@@ -2,8 +2,9 @@
 
 // use App\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\Admin\VisaController;
+use App\Http\Controllers\Backend\VisaController;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\CountriesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -32,5 +33,14 @@ use App\Http\Middleware\AdminMiddleware;
         Route::get('/admin/visa/{id}/edit', [BackendController::class, 'editVisa'])->name('admin.visa.edit');
         Route::put('/admin/visa/{id}/update', [BackendController::class, 'updateVisa'])->name('admin.visa.update');
         Route::delete('/admin/visa/{id}/delete', [BackendController::class, 'destroyVisa'])->name('admin.visa.delete');
+
+        // =============== Cuntries ===============
+        Route::get('/admin/countries', [CountriesController::class, 'index'])->name('admin.countries.index');
+        Route::get('/admin/countries/create', [CountriesController::class, 'create'])->name('admin.countries.create');
+        Route::post('/admin/countries/store', [CountriesController::class, 'store'])->name('admin.countries.store');
+        Route::get('/admin/countries/{id}/edit', [CountriesController::class, 'edit'])->name('admin.countries.edit');
+        Route::put('/admin/countries/{id}/update', [CountriesController::class, 'update'])->name('admin.countries.update');
+        Route::delete('/admin/countries/{id}/delete', [CountriesController::class, 'destroy'])->name('admin.countries.delete');
+        
 
     });
