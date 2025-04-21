@@ -9,7 +9,7 @@ class VisaType extends Model
     //
     protected $fillable = [
         'name',
-        'country_id', // Added to store the associated country
+        'countries', // Added to store the associated country
         'description',
         'eligibility', // Added to store eligibility details
         'processing_time', // Added to store processing time

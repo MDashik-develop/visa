@@ -28,6 +28,31 @@
 
         <!-- Page Heading -->
         @include('layouts.frontend.header')
+        <!-- notifications news -->
+            @if (session('success') || $errors->any())
+                <div
+                    x-data="{ show: true }"
+                    x-init="setTimeout(() => show = false, 4000)"
+                    x-show="show"
+                    class="fixed top-5 right-5 z-50 px-6 py-4 rounded-md shadow-lg text-white transition-all duration-500"
+                    :class="{
+                        'bg-green-500': '{{ session('success') ? 'true' : 'false' }}' === 'true',
+                        'bg-red-500': '{{ $errors->any() ? 'true' : 'false' }}' === 'true',
+                    }"
+                >
+                    @if (session('success'))
+                        {{ session('success') }}
+                    @endif
+    
+                    @if ($errors->any())
+                        <ul class="list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            @endif
 
         <!-- Page Content -->
         <main>

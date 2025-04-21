@@ -34,15 +34,35 @@
                     </div>
 
                     <!-- Countries -->
+                    {{-- <div class="mb-4">
+                        <label for="countries" class="block text-gray-700">Countries</label>
+                        <select name="countries[]" id="countries" multiple
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            @foreach ($countries as $country)
+                                <option value="{{ $country }}"
+                                    {{ in_array($country, json_decode($visa->countries, true)) ? 'selected' : '' }}>
+                                    {{ $country }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <small class="text-gray-500">Hold Ctrl (Cmd on Mac) to select multiple countries.</small>
+                    </div> --}}
+
+                    <!-- Countries -->
                     <div class="mb-4">
                         <label for="countries" class="block text-gray-700">Countries</label>
                         <select name="countries" id="countries"
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->name }}" {{ $visa->country_id == $country->id ? 'selected' : '' }}>
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            required>
+                            <option value="">Select a country</option>
+                            @forelse ($countries as $country)
+                                <option value="{{ $country->name }}" 
+                                    {{ $visa->countries == $country->name ? 'selected' : '' }}>
                                     {{ $country->name }}
                                 </option>
-                            @endforeach
+                            @empty
+                                <option disabled>No countries found</option>
+                            @endforelse
                         </select>
                     </div>
 
@@ -50,20 +70,21 @@
                     <div class="mb-4">
                         <label for="description" class="block text-gray-700">Description</label>
                         <textarea name="description" id="description" rows="4" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ $visa->description }}</textarea>
+                            class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ $visa->description }}</textarea>
                     </div>
 
                     <!-- Eligibility -->
                     <div class="mb-4">
                         <label for="eligibility" class="block text-gray-700">Eligibility</label>
                         <textarea name="eligibility" id="eligibility" rows="4" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ $visa->eligibility }}</textarea>
+                            class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ $visa->eligibility }}</textarea>
                     </div>
 
                     <!-- Processing Time -->
                     <div class="mb-4">
                         <label for="processing_time" class="block text-gray-700">Processing Time</label>
-                        <input type="text" name="processing_time" id="processing_time" value="{{ $visa->processing_time }}" required
+                        <input type="text" name="processing_time" id="processing_time"
+                            value="{{ $visa->processing_time }}" required
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
 

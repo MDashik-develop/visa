@@ -2,12 +2,15 @@
 
 // use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\Backend\ApplicationController;
 use App\Http\Controllers\Backend\VisaController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\CountriesController;
 use App\Http\Controllers\backend\VisaTypeController;
+use App\Http\Controllers\Backend\WebsiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
+use App\Models\WebsiteContent;
 
     Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
@@ -43,5 +46,21 @@ use App\Http\Middleware\AdminMiddleware;
         Route::put('/admin/countries/{id}/update', [CountriesController::class, 'update'])->name('admin.countries.update');
         Route::delete('/admin/countries/{id}/delete', [CountriesController::class, 'destroy'])->name('admin.countries.delete');
         
+        // =============== Application ===============
+        Route::get('/admin/application', [ApplicationController::class, 'index'])->name('admin.applications.index');
+        Route::get('/admin/application/create', [ApplicationController::class, 'create'])->name('admin.applications.create');
+        Route::post('/admin/application/store', [ApplicationController::class, 'store'])->name('admin.applications.store');
+        Route::get('/admin/application/{id}/edit', [ApplicationController::class, 'edit'])->name('admin.applications.edit');
+        Route::put('/admin/application/{id}/update', [ApplicationController::class, 'update'])->name('admin.applications.update');
+        Route::delete('/admin/application/{id}/delete', [ApplicationController::class, 'destroy'])->name('admin.applications.delete');
+
+        // =============== Website ===============
+        Route::get('/admin/website', [WebsiteController::class, 'index'])->name('admin.website.index');    
+        Route::post('/admin/website', [WebsiteController::class, 'store'])->name('admin.website.save');
+
+        // =============== Website Contetn ===============
+        Route::get('/admin/website/content', [WebsiteContent::class, 'index'])->name('admin.website.content');
+        
+
 
     });

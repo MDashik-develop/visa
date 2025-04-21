@@ -66,6 +66,42 @@
                         <li>
                             <button type="button"
                                 class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group 
+                                {{ Request::is('admin/website*') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 bg-gray-200 hover:text-white' }}"
+                                aria-controls="dropdown-website" data-collapse-toggle="dropdown-website">
+                                <svg class="shrink-0 w-5 h-5 text-black group-hover:text-white
+                                    {{ Request::is('admin/website*') ? ' text-white' : ' hover:text-white' }}"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 18 21">
+                                    <path
+                                        d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                                </svg>
+                                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Website's</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+                            <ul id="dropdown-website" class="{{ Request::is('admin.website*') ? '' : 'hidden' }} py-2 space-y-2">
+                                <li>
+                                    <a href="{{ route('admin.website.index') }}"
+                                        class="flex items-center w-full p-2 pl-11 transition duration-75 rounded-lg group 
+                                        {{ Request::routeIs('admin.website.index') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 hover:text-white' }}">
+                                        All Website
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.website.content') }}"
+                                        class="flex items-center w-full p-2 pl-11 transition duration-75 rounded-lg group 
+                                        {{ Request::routeIs('admin.website.content') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 hover:text-white' }}">
+                                        Website Content
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button type="button"
+                                class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group 
                                 {{ Request::is('admin/user*') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 bg-gray-200 hover:text-white' }}"
                                 aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                                 <svg class="shrink-0 w-5 h-5 text-black group-hover:text-white
@@ -172,6 +208,43 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <button type="button"
+                                class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group 
+                                {{ Request::is('admin/applications*') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 bg-gray-200 hover:text-white' }}"
+                                aria-controls="dropdown-applications" data-collapse-toggle="dropdown-applications">
+                                <svg class="shrink-0 w-5 h-5 text-black group-hover:text-white
+                                    {{ Request::is('admin/applications*') ? ' text-white' : ' hover:text-white' }}"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 18 21">
+                                    <path
+                                        d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                                </svg>
+                                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">application's</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+                            <ul id="dropdown-applications"
+                                class="{{ Request::is('applications*') ? '' : 'hidden' }} py-2 space-y-2">
+                                <li>
+                                    <a href="{{ route('admin.applications.index') }}"
+                                        class="flex items-center w-full p-2 pl-11 transition duration-75 rounded-lg group 
+                                        {{ Request::routeIs('admin.applications.index') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 hover:text-white' }}">
+                                        All Applications
+                                    </a>
+                                    </li>
+                                <li>
+                                    <a href="{{ route('admin.applications.create') }}"
+                                        class="flex items-center w-full p-2 pl-11 transition duration-75 rounded-lg group 
+                                        {{ Request::routeIs('admin.applications.create') ? 'bg-indigo-600 text-white' : 'hover:bg-indigo-600 hover:text-white' }}">
+                                        Create Applications
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </aside>
@@ -179,6 +252,31 @@
             <div class="sm:ml-64">
 
                 @include('layouts.header')
+                    <!-- notifications news -->
+                        @if (session('success') || $errors->any())
+                            <div
+                                x-data="{ show: true }"
+                                x-init="setTimeout(() => show = false, 4000)"
+                                x-show="show"
+                                class="fixed top-5 right-5 z-50 px-6 py-4 rounded-md shadow-lg text-white transition-all duration-500"
+                                :class="{
+                                    'bg-green-500': '{{ session('success') ? 'true' : 'false' }}' === 'true',
+                                    'bg-red-500': '{{ $errors->any() ? 'true' : 'false' }}' === 'true',
+                                }"
+                            >
+                                @if (session('success'))
+                                    {{ session('success') }}
+                                @endif
+
+                                @if ($errors->any())
+                                    <ul class="list-disc list-inside text-sm">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        @endif
 
 
                 <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">

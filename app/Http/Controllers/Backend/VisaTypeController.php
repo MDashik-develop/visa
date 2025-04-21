@@ -12,9 +12,9 @@ class VisaTypeController extends Controller
     // fetch all users 
     public function index(){
         
-        $visas = VisaType::all();
+        $visaTypes = VisaType::all();
         
-        return view('backend.visa.index', compact('visas'));
+        return view('backend.visa.index', compact('visaTypes'));
     }
 
     // create visa
@@ -47,7 +47,7 @@ class VisaTypeController extends Controller
         ]);
 
         // Redirect back with a success message
-        return redirect()->route('visa.index')->with('success', 'Visa type created successfully.');
+        return redirect()->route('admin.visa.index')->with('success', 'Visa type created successfully.');
     }
 
     // Edit visa
@@ -78,19 +78,22 @@ class VisaTypeController extends Controller
         // Find the visa type by ID
         $visa = VisaType::findOrFail($id);
 
-        // Find the country by name
-        $country = Countries::where('name', $request->input('countries'))->first();
-
         // Update the VisaType record
         $visa->update([
             'name' => $request->input('name'),
-            'countries' => $country->id,
+            'countries' => $request->input('countries'),
             'description' => $request->input('description'),
             'eligibility' => $request->input('eligibility'),
             'processing_time' => $request->input('processing_time'),
         ]);
 
         // Redirect back with a success message
-        return redirect()->route('visa.index')->with('success', 'Visa type updated successfully.');
+        return redirect()->route('admin.visa.index')->with('success', 'Visa type updated successfully.');
+    }
+
+    // Destroy visa
+    public function destroy($id)
+    {
+        
     }
 }
