@@ -10,17 +10,6 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
                 <h1 class="text-2xl font-bold mb-4">Edit Country</h1>
 
-                {{-- Display errors --}}
-                @if ($errors->any())
-                    <div class="mb-4 text-red-500">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <form action="{{ route('admin.countries.update', $country->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -41,8 +30,8 @@
                         <label for="status" class="block text-gray-700">Status</label>
                         <select name="status" id="status"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="0" {{ $country->status == 0 ? 'selected' : '' }}>Active</option>
-                            <option value="1" {{ $country->status == 1 ? 'selected' : '' }}>Inactive</option>
+                            <option value="1" {{ $country->status == 1 ? 'selected' : '' }}>Active</option>
+                            <option value="0" {{ $country->status == 0 ? 'selected' : '' }}>Inactive</option>
                         </select>
                     </div>
 

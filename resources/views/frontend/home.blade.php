@@ -1,49 +1,36 @@
 @extends('layouts.frontend.app')
 
 @section('content')
-    <!-- notifications news -->
-        @if (session('success') || $errors->any())
-            <div
-                x-data="{ show: true }"
-                x-init="setTimeout(() => show = false, 4000)"
-                x-show="show"
-                class="fixed top-5 right-5 z-50 px-6 py-4 rounded-md shadow-lg text-white transition-all duration-500"
-                :class="{
-                    'bg-green-500': '{{ session('success') ? 'true' : 'false' }}' === 'true',
-                    'bg-red-500': '{{ $errors->any() ? 'true' : 'false' }}' === 'true',
-                }"
-            >
-                @if (session('success'))
-                    {{ session('success') }}
-                @endif
-
-                @if ($errors->any())
-                    <ul class="list-disc list-inside text-sm">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
-        @endif
 
     <!-- Hero Carousel Section -->
         <div class=" w-full relative">
-            <button
+            {{-- <button
                 class="prev-arrow absolute bottom-[80px] right-6 transform -translate-y-1/2 z-10 bg-white text-gray-800 rounded-full p-2 shadow-lg">
                 <x-heroicon-o-arrow-small-left class="h-6 w-6 text-gray-800" />
             </button>
             <button
                 class="next-arrow absolute bottom-[20px] right-6 transform -translate-y-1/2 z-10 bg-white text-gray-800 rounded-full p-2 shadow-lg">
                 <x-heroicon-o-arrow-small-right class="h-6 w-6 text-gray-800" />
-            </button>
-            <div class="slider w-full mx-auto mt-10  overflow-hidden">
-                <img src="https://placehold.co/1200x400" alt="Slide 1" class="w-full shadow-lg" />
-                <img src="https://placehold.co/1200x400" alt="Slide 2" class="w-full shadow-lg" />
-                <img src="https://placehold.co/1200x400" alt="Slide 3" class="w-full shadow-lg" />
+            </button> --}}
+            <div class="slider w-full mx-auto overflow-hidden">
+                @foreach ($sliders as $slider)
+                    <div class="w-full h-[70vh] bg-cover bg-center flex items-center justify-center relative"
+                        style="background-image: url('{{ asset('storage/' . $slider->file) }}');">
+                        
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent z-0"></div>
+            
+                        <!-- Text Content -->
+                        <div class="text-white p-6 rounded-lg max-w-2xl text-start absolute top-1/2 left-28 transform -translate-y-1/2 z-10">
+                            <h2 class="sliderH2 text-5xl font-bold mb-4 font-poppins uppercase">{{ $slider->title }}</h2>
+                            <p class="sliderP text-lg font-poppins">{{ $slider->description }}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+            
         </div>
-        <div class="marquee-wrapper-1">
+        {{-- <div class="marquee-wrapper-1">
             <div class="marquee" aria-label="Scrolling marquee with repeated country names and asterisk icons">
                 <span>Middle East</span>
                 <i class="fas fa-asterisk mx-2"></i>
@@ -82,61 +69,12 @@
                 <span>Zukto Ratto</span>
                 <i class="fas fa-asterisk mx-2"></i>
             </div>
-        </div>
+        </div> --}}
 
-    <!-- logos clients Section -->
-        <section class="py-10 pt-20">
-            <div class="flex items-center justify-center gap-4 mb-10">
-                <div class="border-t border-gray-400 w-24">
-                </div>
-                <p class="text-gray-600 text-m font-normal font-poppins whitespace-nowrap">
-                    We're proud to work with our preferred partners
-                </p>
-                <div class="border-t border-gray-400 w-24">
-                </div>
-            </div>
 
-            <div class="flex justify-center items-center ">
-                <div class="slider-logos w-full max-w-7xl px-10">
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 1" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 2" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 3" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 4" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 5" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 6" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 7" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 8" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 9" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 10" class="w-full" />
-                    </div>
-                    <div class="logo-item px-2">
-                        <img src="https://placehold.co/100x80" alt="Client Logo 1" class="w-full" />
-                    </div>
-                </div>
-            </div>
-        </section>
 
     <!-- services section -->
-        <section class="my-10 pb-24 relative h-[450px] bg-gradient-to-l from-cyan-50 to-white overflow-hidden" onmousemove="moveFlyIcon(event)"
+        <section class="pt-24 pb-28 relative h-[450px] bg-gradient-to-l from-cyan-50 to-white overflow-hidden" onmousemove="moveFlyIcon(event)"
             id="fly-icon-wrapper">
             <svg id="fly-icon" class="absolute left-[11%] top-3 w-16 h-16 transition-transform duration-200 ease-out"
                 height="64px" width="64px" viewBox="-93.13 -93.13 477.28 477.28" fill="#000000"
@@ -155,28 +93,45 @@
 
             <div class="px-2 w-full relative">
                 <button
-                    class="prev-arrow-service absolute bottom-[-80px] left-[45%] transform -translate-y-1/2 -translate-x-1/2 z-10 bg-white text-gray-800 rounded-full p-2 shadow-lg">
+                    class="prev-arrow-service absolute bottom-[-80px] left-[40%] transform -translate-y-1/2 -translate-x-1/2 z-10 bg-white text-gray-800 rounded-full p-2 shadow-lg">
                     <x-heroicon-o-arrow-small-left class="h-6 w-6 text-gray-800" />
                 </button>
                 <button
-                    class="next-arrow-service absolute bottom-[-80px] right-[42%] transform -translate-y-1/2 z-10 bg-white text-gray-800 rounded-full p-2 shadow-lg">
+                    class="next-arrow-service absolute bottom-[-80px] right-[40%] transform -translate-y-1/2 z-10 bg-white text-gray-800 rounded-full p-2 shadow-lg">
                     <x-heroicon-o-arrow-small-right class="h-6 w-6 text-gray-800" />
                 </button>
                 <div class="slider-service w-full max-w-5xl mx-auto mt-10">
+                    {{-- <div class="px-5">
+                        <div class="w-full h-[270px] p-4 bg-cover bg-center flex flex-col items-start gap-3 justify-center relative" style="background-image: url(https://skyotelglobal.com/wp-content/uploads/2022/02/shape-2.png);">
+                            <img class="h-[60px] mb-4" src="https://skyotelglobal.com/wp-content/uploads/2022/02/4.-Business-Consultancy-Icon.png" alt="">
+                            <a href="#" clas>
+                                Business Consultancy
+                            </a>
+                            <p>
+                                Drive Growth, Achieve ResultsDrive Growth, Achieve Results
+                            </p>
+                        </div>
+                    </div> --}}
                     <div class="px-5">
-                        <img src="https://placehold.co/600x400" alt="Slide 1" class="w-full rounded-xl" />
+                        <img src="{{ asset('uploads/Umrah.jpg') }}" alt="Slide 2" class="w-full rounded-xl" />
                     </div>
                     <div class="px-5">
-                        <img src="https://placehold.co/600x400" alt="Slide 2" class="w-full rounded-xl" />
+                        <img src="{{ asset('uploads/study.jpg') }}" alt="Slide 3" class="w-full rounded-xl" />
                     </div>
                     <div class="px-5">
-                        <img src="https://placehold.co/600x400" alt="Slide 3" class="w-full rounded-xl" />
+                        <img src="{{ asset('uploads/tours.jpg') }}" alt="Slide 3" class="w-full rounded-xl" />
                     </div>
                     <div class="px-5">
-                        <img src="https://placehold.co/600x400" alt="Slide 3" class="w-full rounded-xl" />
+                        <img src="{{ asset('uploads/visa-service.jpg') }}" alt="Slide 3" class="w-full rounded-xl" />
                     </div>
                     <div class="px-5">
-                        <img src="https://placehold.co/600x400" alt="Slide 3" class="w-full rounded-xl" />
+                        <img src="{{ asset('uploads/insurance.jpg') }}" alt="Slide 3" class="w-full rounded-xl" />
+                    </div>
+                    <div class="px-5">
+                        <img src="{{ asset('uploads/hotel.jpg') }}" alt="Slide 3" class="w-full rounded-xl" />
+                    </div>
+                    <div class="px-5">
+                        <img src="{{ asset('uploads/medical.jpg') }}" alt="Slide 3" class="w-full rounded-xl" />
                     </div>
                 </div>
             </div>
@@ -455,7 +410,7 @@
                             assistance, just fill out the form and our experts will get back to
                             you promptly.
                         </p>
-                        <div class="flex items-center space-x-6">
+                        {{-- <div class="flex items-center space-x-6">
                             <img alt="Smiling man with headset, representing customer support"
                                 class="rounded-full border-4 border-white shadow-lg" height="100"
                                 src="https://storage.googleapis.com/a1aa/image/12c5922c-0e6d-4607-2b8e-fa3e0fb96988.jpg"
@@ -468,7 +423,7 @@
                                     Customer Support Lead
                                 </p>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="absolute bottom-6 right-6 opacity-20 select-none pointer-events-none">
                             <img alt="Vector art of a support agent with headset and laptop" class="rotate-12" height="250"
                                 src="https://storage.googleapis.com/a1aa/image/28097367-cdaf-444d-25e9-74a254655790.jpg"
@@ -577,6 +532,61 @@
                             </button>
                         </form>
                     </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- logos clients Section -->
+        <section class="py-10 pt-20">
+            <div class="flex items-center justify-center gap-4 mb-10">
+                <div class="border-t border-gray-400 w-24">
+                </div>
+                <p class="text-gray-600 text-m font-normal font-poppins whitespace-nowrap">
+                    Our sister concern
+                </p>
+                <div class="border-t border-gray-400 w-24">
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center ">
+                <div class="slider-logos w-full max-w-7xl px-10">
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/SKYOTEL.png') }}" alt="Client Logo 1" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/B2B.png') }}" alt="Client Logo 2" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/skymedix.png') }}" alt="Client Logo 3" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/esokini.jpg') }}" alt="Client Logo 4" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/SKYOTEL.png') }}" alt="Client Logo 1" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/B2B.png') }}" alt="Client Logo 2" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/skymedix.png') }}" alt="Client Logo 3" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/esokini.jpg') }}" alt="Client Logo 4" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/SKYOTEL.png') }}" alt="Client Logo 1" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/B2B.png') }}" alt="Client Logo 2" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/skymedix.png') }}" alt="Client Logo 3" class="w-full" />
+                    </div>
+                    <div class="logo-item px-2">
+                        <img src="{{ asset('uploads/esokini.jpg') }}" alt="Client Logo 4" class="w-full" />
+                    </div>
+
                 </div>
             </div>
         </section>

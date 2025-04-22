@@ -7,10 +7,10 @@ use App\Http\Controllers\Backend\VisaController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\CountriesController;
 use App\Http\Controllers\backend\VisaTypeController;
+use App\Http\Controllers\Backend\WebsiteContentController;
 use App\Http\Controllers\Backend\WebsiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
-use App\Models\WebsiteContent;
 
     Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
@@ -59,8 +59,12 @@ use App\Models\WebsiteContent;
         Route::post('/admin/website', [WebsiteController::class, 'store'])->name('admin.website.save');
 
         // =============== Website Contetn ===============
-        Route::get('/admin/website/content', [WebsiteContent::class, 'index'])->name('admin.website.content');
-        
+        Route::get('/admin/website/content', [WebsiteContentController::class, 'index'])->name('admin.website.content');
+        Route::post('/admin/website/content/slider/store', [WebsiteContentController::class, 'SliderStore'])->name('admin.slider.store');
+        Route::get('/admin/website/content/{id}/edit', [WebsiteContentController::class, 'SliderEdit'])->name('admin.slider.edit');
+        Route::put('/admin/website/content/{id}/update', [WebsiteContentController::class, 'SliderUpdate'])->name('admin.slider.update');
+        Route::delete('/admin/website/content/{id}/delete', [WebsiteContentController::class, 'SliderDestroy'])->name('admin.slider.delete');
+                
 
 
     });

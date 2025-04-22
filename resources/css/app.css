@@ -48,12 +48,6 @@
         padding: 0.5rem 1rem;
       }
 
-
-
-
-
-
-
     /* Scrollbar for sidebar */
     aside::-webkit-scrollbar {
       width: 6px;
@@ -67,6 +61,22 @@
     }
 
 
+    /* slick */
+  .slick-dots{
+    height: 80px;
+  }
+  .slick-dots li button:before{
+    color: silver;
+    font-size: 18px;
+  }
+  .slick-dotted.slick-slider{
+    margin-bottom: 0px;
+  }
+
+  .slider-logos img{
+    height: 90px;  /* Fixed height */
+    object-fit: contain;  /* Make sure the aspect ratio is maintained */
+  }
 
 
 

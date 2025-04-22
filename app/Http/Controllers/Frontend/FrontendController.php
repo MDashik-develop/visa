@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use App\Models\Subscribe;
+use App\Models\Website;
+use App\Models\WebsiteContent;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -12,7 +14,9 @@ class FrontendController extends Controller
     // Home page
     public function index()
     {
-        return view('frontend.home');
+        $website = Website::first();
+        $sliders = WebsiteContent::where('type','slider')->where('status', 1)->get();
+        return view('frontend.home', compact('sliders', 'website'));
     }
     
     // Visa Assistance

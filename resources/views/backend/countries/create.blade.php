@@ -10,16 +10,6 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
                 <h1 class="text-2xl font-bold mb-4">Create New Country</h1>
 
-                {{-- Display errors --}}
-                @if ($errors->any())
-                    <div class="mb-4 text-red-500">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <form action="{{ route('admin.countries.store') }}" method="POST">
                     @csrf

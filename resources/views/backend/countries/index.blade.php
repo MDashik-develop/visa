@@ -11,12 +11,6 @@
         <h2 class="text-xl font-semibold text-gray-800 mb-4">
             All Crountries
         </h2>
-
-        @if (session('success'))
-            <div class="mb-4 text-green-600 font-medium">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
