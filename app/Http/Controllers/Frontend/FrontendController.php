@@ -8,6 +8,7 @@ use App\Models\Subscribe;
 use App\Models\Website;
 use App\Models\WebsiteContent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -26,7 +27,7 @@ class FrontendController extends Controller
     }
 
     // send massage applications
-    public function massage(Request $request)
+    public function message(Request $request)
     {
         // Validate the request data
         $request->validate([
@@ -48,17 +49,19 @@ class FrontendController extends Controller
     // subscribe 
     public function subscribe(Request $request)
     {
-        // Validate the request data
-        $request->validate([
+        // Validate incoming data
+        $validated = $request->validate([
             'name' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:subscribes,email',  // Ensure email is unique
         ]);
-
-        // Create a new application
-        Subscribe::create($request->all());
-
-        // Redirect to the application index page with a success message
-        return redirect()->route('home')->with('success', 'Subscribe successfully.');
+    
+        // Create a new subscription
+        Subscribe::create([
+            'name' => Auth::user() ? Auth::user()->name : null,  // If name is null, use null
+            'email' => $validated['email'],
+        ]);
+    
+        return redirect()->route('home')->with('success', 'Subscription created successfully!');
     }
     
         

@@ -461,7 +461,7 @@
                                 Do you have questions or want more information?
                             </h2>
                         </div>
-                        <form class="space-y-8 max-w-lg" action="{{ route('massage') }}" method="POST">
+                        <form class="space-y-8 max-w-lg" action="{{ route('message') }}" method="POST">
                             @csrf
                             @if (session('success'))
                                 <div class="mb-4 text-green-600 font-medium">

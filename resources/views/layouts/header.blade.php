@@ -24,29 +24,28 @@
         Dashboard
     </h1>
     <div class="flex items-center space-x-4">
-        <button
+        {{-- <button
             class="relative text-gray-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 rounded">
             <i class="fas fa-bell fa-lg">
             </i>
             <span
                 class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full ring-2 ring-white">
             </span>
-        </button>
+        </button> --}}
         <div class="flex items-center space-x-3 cursor-pointer group">
             <img alt="Profile picture of John Doe, a smiling man with short brown hair"
                 class="w-10 h-10 rounded-full object-cover" height="40"
-                src="https://storage.googleapis.com/a1aa/image/510d3a72-6ff3-47d9-f0e1-ff9ec205614f.jpg"
+                src="https://cdn-icons-png.flaticon.com/512/219/219958.png"
                 width="40" />
             <div class="hidden sm:block">
                 <p class="text-gray-800 font-semibold">
-                    John Doe
+                    {{ Auth::user()->name }}
                 </p>
-                <p class="text-gray-500 text-sm">
+                {{-- <p class="text-gray-500 text-sm">
                     Administrator
-                </p>
+                </p> --}}
             </div>
-            <i class="fas fa-chevron-down text-gray-500 group-hover:text-blue-600 transition">
-            </i>
+            {{-- <i class="fas fa-chevron-down text-gray-500 group-hover:text-blue-600 transition"></i> --}}
         </div>
     </div>
 </header>

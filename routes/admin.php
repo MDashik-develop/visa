@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\ApplicationController;
 use App\Http\Controllers\Backend\VisaController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\CountriesController;
+use App\Http\Controllers\Backend\MessageController;
+use App\Http\Controllers\Backend\SubscribeController;
 use App\Http\Controllers\backend\VisaTypeController;
 use App\Http\Controllers\Backend\WebsiteContentController;
 use App\Http\Controllers\Backend\WebsiteController;
@@ -64,6 +66,17 @@ use App\Http\Middleware\AdminMiddleware;
         Route::get('/admin/website/content/{id}/edit', [WebsiteContentController::class, 'SliderEdit'])->name('admin.slider.edit');
         Route::put('/admin/website/content/{id}/update', [WebsiteContentController::class, 'SliderUpdate'])->name('admin.slider.update');
         Route::delete('/admin/website/content/{id}/delete', [WebsiteContentController::class, 'SliderDestroy'])->name('admin.slider.delete');
+
+        // =============== Massage ===============
+        Route::get('/admin/message', [MessageController::class, 'index'])->name('admin.message');
+        Route::delete('/admin/message/{id}', [MessageController::class, 'destroy'])->name('admin.message.delete');
+
+        // =============== Subscribe ===============
+        Route::get('/admin/message/subscribe', [SubscribeController::class, 'index'])->name('admin.subscribe');
+        Route::delete('/admin/message/subscribe/{id}', [SubscribeController::class, 'destroy'])->name('admin.subscribe.delete');
+        Route::get('/admin/export-subscribers', [SubscribeController::class, 'export'])->name('admin.export.subscribers');
+        
+        
                 
 
 
