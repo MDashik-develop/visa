@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
+use App\Models\Message;
+use App\Models\Subscribe;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,9 +16,14 @@ class BackendController extends Controller
     {
         // Fetch all users from the database
         $users = User::latest()->take(5)->get();
+        $totalUsers = User::count();
+        $totalApplications = Application::count();
+        $totalMessages = Message::count();
+        $totalSubscribers = Subscribe::count();
+        $subscribers = Subscribe::latest()->take(5)->get();
 
         // Return the view with the users data
-        return view('backend.dashboard', compact('users'));
+        return view('backend.dashboard', compact('users','totalUsers', 'totalApplications', 'totalMessages', 'totalSubscribers','subscribers'));
     }
 
     // fetch all users
@@ -27,8 +35,8 @@ class BackendController extends Controller
         // Return the view with the users data
         return view('backend.user.index', compact('users'));
     }
-    
-    // create user  
+
+    // create user
     public function create()
     {
         // Return the view to create a new user

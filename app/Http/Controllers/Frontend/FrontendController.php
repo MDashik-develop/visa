@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Countries;
 use App\Models\Message;
 use App\Models\Subscribe;
+use App\Models\VisaType;
 use App\Models\Website;
 use App\Models\WebsiteContent;
 use Illuminate\Http\Request;
@@ -19,11 +21,19 @@ class FrontendController extends Controller
         $sliders = WebsiteContent::where('type','slider')->where('status', 1)->get();
         return view('frontend.home', compact('sliders', 'website'));
     }
-    
+
     // Visa Assistance
     public function VisaAssistance(Request $request)
     {
-        return view('frontend.visaAssistance');
+        $countries = Countries::where('status', 1)->get();
+        return view('frontend.visaAssistance', compact('countries'));
+    }
+
+    // Visa Assistance Get
+    public function VisaAssistanceGet(Request $request)
+    {
+        $visa = VisaType::where('countries', $request->country)->get();
+        return response()->json($visa);
     }
 
     // send massage applications
@@ -45,8 +55,8 @@ class FrontendController extends Controller
         // Redirect to the application index page with a success message
         return redirect()->route('home')->with('success', 'Message send successfully.');
     }
-    
-    // subscribe 
+
+    // subscribe
     public function subscribe(Request $request)
     {
         // Validate incoming data
@@ -54,15 +64,15 @@ class FrontendController extends Controller
             'name' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:subscribes,email',  // Ensure email is unique
         ]);
-    
+
         // Create a new subscription
         Subscribe::create([
             'name' => Auth::user() ? Auth::user()->name : null,  // If name is null, use null
             'email' => $validated['email'],
         ]);
-    
+
         return redirect()->route('home')->with('success', 'Subscription created successfully!');
     }
-    
-        
+
+
 }

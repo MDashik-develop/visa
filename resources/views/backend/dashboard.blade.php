@@ -4,92 +4,67 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-
-
-
-    <div class="py-12">
-        {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> --}}
+    <div class="">
         <div class=" mx-auto">
-            {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- All Users Card -->
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">All Users</h3>
-                        <p class="mt-2 text-3xl font-bold text-indigo-600">
-                            {{ \App\Models\User::count() }}
-                        </p>
-                    </div>
-                </div>
-            </div> --}}
-
-
-
-
-
             <!-- Content area -->
-            <section class="flex-1 overflow-y-auto p-6 mt-16">
+            <section class="flex-1 overflow-y-auto p-6">
                 <!-- Stats cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <!-- Total Users -->
                     <div class="bg-white rounded-lg shadow p-5 flex items-center space-x-4">
-                        <div class="p-3 bg-blue-100 text-blue-600 rounded-full">
-                            <i class="fas fa-users fa-2x">
-                            </i>
+                        <div class="p-3 bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center">
+                            <i class="fas fa-users fa-2x"></i>
                         </div>
                         <div>
-                            <p class="text-gray-500">
-                                Total Users
-                            </p>
+                            <p class="text-gray-500">Total Users</p>
                             <p class="text-2xl font-semibold text-gray-800">
-                                {{ \App\Models\User::count() }}
+                                {{ $totalUsers }}
                             </p>
                         </div>
                     </div>
+
+                    <!-- Total Applications -->
                     <div class="bg-white rounded-lg shadow p-5 flex items-center space-x-4">
-                        <div class="p-3 bg-green-100 text-green-600 rounded-full">
-                            <i class="fas fa-box-open fa-2x">
-                            </i>
+                        <div class="p-3 bg-teal-100 text-teal-600 rounded-full w-16 h-16 flex items-center justify-center">
+                            <i class="fas fa-clipboard-list fa-2x"></i>
                         </div>
                         <div>
-                            <p class="text-gray-500">
-                                Total Applications
-                            </p>
+                            <p class="text-gray-500">Total Applications</p>
                             <p class="text-2xl font-semibold text-gray-800">
-                                {{ \App\Models\User::count() }}
+                                {{ $totalApplications }}
                             </p>
                         </div>
                     </div>
+
+                    <!-- Total Messages -->
                     <div class="bg-white rounded-lg shadow p-5 flex items-center space-x-4">
-                        <div class="p-3 bg-red-100 text-red-600 rounded-full">
-                            <i class="fas fa-dollar-sign fa-2x">
-                            </i>
+                        <div class="p-3 bg-red-100 text-red-600 rounded-full w-16 h-16 flex items-center justify-center">
+                            <i class="fas fa-comment-dots fa-2x"></i>
                         </div>
                         <div>
-                            <p class="text-gray-500">
-                                Today's Aplly
-                            </p>
+                            <p class="text-gray-500">Total Messages</p>
                             <p class="text-2xl font-semibold text-gray-800">
-                                $124,560
+                                {{ $totalMessages }}
                             </p>
                         </div>
                     </div>
+
+                    <!-- Total Subscribers -->
                     <div class="bg-white rounded-lg shadow p-5 flex items-center space-x-4">
-                        <div class="p-3 bg-yellow-100 text-yellow-600 rounded-full">
-                            <i class="fas fa-shopping-cart fa-2x">
-                            </i>
+                        <div class="p-3 bg-yellow-100 text-yellow-600 rounded-full w-16 h-16 flex items-center justify-center">
+                            <i class="fas fa-users-cog fa-2x"></i>
                         </div>
                         <div>
-                            <p class="text-gray-500">
-                                Available Visa
-                            </p>
+                            <p class="text-gray-500">Total Subscribers</p>
                             <p class="text-2xl font-semibold text-gray-800">
-                                3,214
+                                {{ $totalSubscribers }}
                             </p>
                         </div>
                     </div>
                 </div>
+
                 <!-- Recent orders table -->
-                    {{-- <div class="bg-white rounded-lg shadow p-6">
+                {{-- <div class="bg-white rounded-lg shadow p-6">
                         <h2 class="text-xl font-semibold text-gray-800 mb-4">
                             Recent Orders
                         </h2>
@@ -256,7 +231,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-            
+
                                 @forelse ($users as $user)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -298,12 +273,76 @@
                         </table>
                     </div>
                 </div>
+                <!-- Visa Types Table -->
+                <div class="mt-8 bg-white rounded-lg shadow p-6">
+                    <div class="flex justify-between">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                            All Subscribers
+                        </h2>
+                        <button class="bg-green-500 text-white px-3 py-1 rounded font-semibold" onclick="window.location.href='{{ route('admin.export.subscribers') }}'">Export</button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                                        ID
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                                        Name
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                                        Mail
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @forelse ($subscribers as $subscriber)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                            {{ $subscriber->id }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                            @if ($subscriber->name)
+                                                {{ $subscriber->name }}
+                                            @else
+                                                <span class="text-red-500">Not User</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                            {{ $subscriber->email }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
+                                            <form action="{{ route('admin.subscribe.delete', $subscriber->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this visa type?')"
+                                                class="inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900 ml-2">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                                            No Subscribers found.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
             </section>
-
-
-
-
         </div>
     </div>
-    
+
 </x-app-layout>

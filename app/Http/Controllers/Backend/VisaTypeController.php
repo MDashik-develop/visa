@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 
 class VisaTypeController extends Controller
 {
-    // fetch all users 
-    public function index(){
-        
+    // fetch all users
+    public function index()
+    {
         $visaTypes = VisaType::all();
-        
+
         return view('backend.visa.index', compact('visaTypes'));
     }
 
     // create visa
-    public function create(){
-        
+    public function create()
+    {
         $countries = Countries::where('status', 1)->get();
-        
+
         return view('backend.visa.create', compact('countries'));
     }
 
@@ -94,6 +94,6 @@ class VisaTypeController extends Controller
     // Destroy visa
     public function destroy($id)
     {
-        
+
     }
 }
