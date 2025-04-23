@@ -6,7 +6,7 @@ use App\Models\Website;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class AppLayout extends Component
+class AppLayoutFrontend extends Component
 {
     /**
      * Get the view / contents that represents the component.
@@ -14,6 +14,6 @@ class AppLayout extends Component
     public function render(): View
     {
         $website = Website::first();
-        return view('layouts.app', compact('website'));
+        return view('layouts.frontend.app', compact('website'));
     }
 }

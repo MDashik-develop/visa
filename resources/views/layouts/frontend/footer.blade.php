@@ -8,8 +8,7 @@
             <address class="not-italic text-gray-300 text-sm leading-relaxed space-y-4">
                 <p>
                     <strong class="text-white">Dhaka Office:</strong><br />
-                    492/20, City Lights (1st Floor)<br />
-                    Bashundhara Apollo Hospital Link Road, Dhaka, Bangladesh
+                    {{ $website->address }}
                 </p>
                 <p>
                     <strong class="text-white">Registered Office:</strong><br />
@@ -179,7 +178,7 @@
                     href="https://www.facebook.com/skyotelglobal"><i class="fab fa-facebook-f"></i></a>
                 <a aria-label="Email" class="text-gray-300 hover:text-[#00b4d8] transition-colors text-2xl"
                     href="mailto:skyotelglobal@gmail.com"><i class="fas fa-envelope"></i></a>
-                
+
                 </div>
             <form class="flex flex-col gap-4" action="{{ route('subscribe') }}" method="POST">
               @csrf
@@ -200,12 +199,12 @@
             <div class="mt-10 space-y-4 text-gray-400 text-sm">
                 <div class="flex items-center space-x-3">
                     <i class="fas fa-phone-alt text-[#00b4d8] text-lg"></i>
-                    <a class="hover:text-white transition-colors" href="tel:+8801733311644">+88017333 11 644</a>
+                    <a class="hover:text-white transition-colors" href="tel:{{ $website->phone }}">{{ $website->phone }}</a>
                 </div>
                 <div class="flex items-center space-x-3">
                     <i class="fas fa-envelope text-[#00b4d8] text-lg"></i>
                     <a class="hover:text-white transition-colors"
-                        href="mailto:info@skyotelglobal.com">info@skyotelglobal.com</a>
+                        href="mailto:{{ $website->email }}">{{ $website->email }}</a>
                 </div>
                 {{-- <div class="flex items-center space-x-3">
                     <i class="fas fa-map-marker-alt text-[#00b4d8] text-lg"></i>

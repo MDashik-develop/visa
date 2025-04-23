@@ -34,10 +34,10 @@ Alpine.start();
     //         // arrows: false,
     //         fade: true,
     //         prevArrow: $(".prev-arrow"),
-    //         nextArrow: $(".next-arrow"),   
+    //         nextArrow: $(".next-arrow"),
     //     });
     // });
-    
+
     $(document).ready(function () {
         $(".slider-service").slick({
             // dots: true,
@@ -49,9 +49,9 @@ Alpine.start();
             // arrows: false,
             // fade: true,
             prevArrow: $(".prev-arrow-service"),
-            nextArrow: $(".next-arrow-service"),   
+            nextArrow: $(".next-arrow-service"),
         });
-    });    
+    });
 
     $(document).ready(function () {
         $(".slider-logos").slick({
@@ -60,7 +60,7 @@ Alpine.start();
             speed: 500,
             slidesToShow: 6,
             autoplay: true,
-            autoplaySpeed: 3000, 
+            autoplaySpeed: 3000,
             responsive: [
                 {
                     breakpoint: 1024,
@@ -89,7 +89,7 @@ Alpine.start();
 
 
 // summernote
-    
+
     $(document).ready(function() {
         $('.longDescription').summernote({
             placeholder: 'Write product description...',
@@ -151,3 +151,48 @@ $(document).ready(function () {
 });
 
 
+// sidebar
+
+    // Function to adjust sidebar based on screen size when the page loads
+    function adjustSidebarOnLoad() {
+        const sidebar = document.getElementById("sidebar");
+
+        if (window.innerWidth <= 640) {
+            // For small screens (<= 640px), hide the sidebar with margin-left: -300px
+            sidebar.style.marginLeft = "-300px";
+        } else {
+            // For larger screens, make sure the sidebar is visible with margin-left: 0
+            sidebar.style.marginLeft = "0";
+        }
+    }
+
+    // Adjust sidebar on page load
+    window.onload = adjustSidebarOnLoad;
+    window.addEventListener('resize', adjustSidebarOnLoad);
+
+    // Function to toggle sidebar on button click
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+
+        if (window.innerWidth <= 640) {
+            // For small screens, toggle margin-left between -300px and 0
+            if (sidebar.style.marginLeft === "-300px") {
+                sidebar.style.marginLeft = "0";  // Show the sidebar
+            } else {
+                sidebar.style.marginLeft = "-300px";  // Hide the sidebar
+            }
+        } else {
+            // For larger screens, toggle margin-left between -300px and 0
+            if (sidebar.style.marginLeft === "-300px") {
+                sidebar.style.marginLeft = "0";  // Show the sidebar
+            } else {
+                sidebar.style.marginLeft = "-300px";  // Hide the sidebar
+            }
+        }
+    }
+
+    // Attach the toggleSidebar function to the sidebar icon button
+    const sidebarIcons = document.querySelectorAll(".sidebarIcon");
+    sidebarIcons.forEach(icon => {
+        icon.addEventListener("click", toggleSidebar);
+    });
