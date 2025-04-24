@@ -81,6 +81,77 @@
 
 
 
+  body {
+    font-family: "Inter", sans-serif;
+    background: #f9fafb;
+    min-height: 100vh;
+  }
+  .image-blur-bg {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 9999px;
+    filter: blur(60px);
+    background: #a7d7a7;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 0;
+    opacity: 0.3;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  .vertical-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #facc15 0%, #fde68a 100%);
+    opacity: 0.7;
+    z-index: 0;
+    border-radius: 0 0 0 12px;
+  }
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: translateY(-50%) scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(-50%) scale(1.05);
+    }
+  }
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+  }
+  .fade-in-up.delay-1 {
+    animation-delay: 0.3s;
+  }
+  .fade-in-up.delay-2 {
+    animation-delay: 0.6s;
+  }
+  .fade-in-up.delay-3 {
+    animation-delay: 0.9s;
+  }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .btn-hover:hover {
+    box-shadow: 0 8px 20px rgba(10, 17, 40, 0.4);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+  }
+
+
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

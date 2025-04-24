@@ -31,7 +31,8 @@
 
             <div>
                 <label class="block font-medium">Address</label>
-                <input type="text" name="address" value="{{ old('address', $website->address ?? '') }}" class="w-full border rounded p-2">
+                <textarea name="address" id="address" rows="4" required
+                    class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('address', $website->address ?? '') }}</textarea>
             </div>
 
             <div>
@@ -54,6 +55,6 @@
 
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Settings</button>
         </form>
-        
+
     </div>
 </x-app-layout>

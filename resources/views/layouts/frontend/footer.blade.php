@@ -8,7 +8,7 @@
             <address class="not-italic text-gray-300 text-sm leading-relaxed space-y-4">
                 <p>
                     <strong class="text-white">Dhaka Office:</strong><br />
-                    {{ $website->address }}
+                    {!! $website->address !!}
                 </p>
                 <p>
                     <strong class="text-white">Registered Office:</strong><br />

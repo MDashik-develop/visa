@@ -22,6 +22,7 @@ Alpine.start();
 // slick carousel
     window.$ = $;
     window.jQuery = $;
+    
 
     // $(document).ready(function () {
     //     $(".slider").slick({

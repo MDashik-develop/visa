@@ -32,7 +32,7 @@ class FrontendController extends Controller
     // Visa Assistance Get
     public function VisaAssistanceGet(Request $request)
     {
-        $visa = VisaType::where('countries', $request->country)->get();
+        $visa = VisaType::where('countries', $request->countries)->get();
         return response()->json($visa);
     }
 

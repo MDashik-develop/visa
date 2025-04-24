@@ -15,22 +15,32 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                             ID
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                             User ID
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                             Name
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                            Mail
+                        </th>
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                             Countries
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                             Messages
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                        <th
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
                             Actions
                         </th>
                     </tr>
@@ -52,6 +62,9 @@
                                 {{ $message->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                {{ $message->email }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                 {{ $message->countrie }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
@@ -64,7 +77,7 @@
                                     data-modal-target="default-modal" data-modal-toggle="default-modal"
                                     data-id="{{ $message->id }}" data-user-id="{{ $message->user_id }}"
                                     data-name="{{ $message->name }}" data-countries="{{ $message->countrie }}"
-                                    data-message="{{ $message->message }}">
+                                    data-message="{{ $message->message }}" data-email="{{ $message->email }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
                                 <form action="{{ route('admin.message.delete', $message->id) }}" method="POST"
@@ -117,6 +130,7 @@
                         <p id="modal-id" class="text-sm text-gray-700"></p>
                         <p id="modal-user-id" class="text-sm text-gray-700"></p>
                         <p id="modal-name" class="text-sm text-gray-700"></p>
+                        <p id="modal-mail" class="text-sm text-gray-700"></p>
                         <p id="modal-countries" class="text-sm text-gray-700"></p>
                         <p id="modal-message" class="text-sm text-gray-700"></p>
                     </div>
@@ -135,15 +149,18 @@
                 const name = this.getAttribute('data-name');
                 const countries = this.getAttribute('data-countries');
                 const message = this.getAttribute('data-message');
+                const email = this.getAttribute('data-email');
 
                 // Inject data into the modal
                 document.getElementById('modal-id').innerText = `ID: ${id}`;
                 if (userId && userId !== "null" && userId !== "") {
                     document.getElementById('modal-user-id').innerHTML = `User ID: ${userId}`;
                 } else {
-                    document.getElementById('modal-user-id').innerHTML = `<span class="text-red-500">Not User</span>`;
+                    document.getElementById('modal-user-id').innerHTML =
+                        `<span class="text-red-500">Not User</span>`;
                 }
                 document.getElementById('modal-name').innerText = `Name: ${name}`;
+                document.getElementById('modal-mail').innerText = `Mail: ${email}`;
                 document.getElementById('modal-countries').innerText = `Countries: ${countries}`;
                 document.getElementById('modal-message').innerText = `Message: ${message}`;
             });
