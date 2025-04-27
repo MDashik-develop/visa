@@ -93,10 +93,11 @@ Alpine.start();
 
     $(document).ready(function() {
         $('.longDescription').summernote({
-            placeholder: 'Write product description...',
+            placeholder: 'Write here...',
             tabsize: 2,
             height: 200,
             toolbar: [
+
                 // Style options
                 ['style', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
 
@@ -117,24 +118,6 @@ Alpine.start();
 
                 // Miscellaneous options
                 ['misc', ['undo', 'redo']],
-
-                // Clipboard options
-                ['clipboard', ['cut', 'copy', 'paste', 'pasteplain']],
-
-                // Font options
-                ['fontname', ['fontname']],
-
-                // Color options
-                ['color', ['forecolor', 'backcolor']],
-
-                // Insert link, image, video, table, etc.
-                ['insert', ['link', 'picture', 'video', 'table', 'hr', 'emoji', 'specialchar']],
-
-                // Paragraph options (Spacing, Alignment, Lists)
-                ['para', ['ul', 'ol', 'paragraph', 'height']],
-
-                // Miscellaneous actions (Undo/Redo)
-                ['misc', ['undo', 'redo']]
             ]
         });
     });

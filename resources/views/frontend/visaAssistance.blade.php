@@ -312,7 +312,7 @@
                 display: none;
             }
 
-            .eligibility {
+            .eligibility, .cost {
 
                 /* List style */
                 ul {
