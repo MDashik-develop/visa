@@ -56,7 +56,7 @@
                             required>
                             <option value="">Select a country</option>
                             @forelse ($countries as $country)
-                                <option value="{{ $country->name }}" 
+                                <option value="{{ $country->name }}"
                                     {{ $visa->countries == $country->name ? 'selected' : '' }}>
                                     {{ $country->name }}
                                 </option>
@@ -78,6 +78,13 @@
                         <label for="eligibility" class="block text-gray-700">Eligibility</label>
                         <textarea name="eligibility" id="eligibility" rows="4" required
                             class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ $visa->eligibility }}</textarea>
+                    </div>
+
+                    <!-- Cost -->
+                    <div class="mb-4">
+                        <label for="cost" class="block text-gray-700">Cost</label>
+                        <textarea name="cost" id="cost" rows="4" required
+                            class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ $visa->cost }}</textarea>
                     </div>
 
                     <!-- Processing Time -->

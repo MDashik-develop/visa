@@ -13,6 +13,7 @@ class VisaType extends Model
         'description',
         'eligibility', // Added to store eligibility details
         'processing_time', // Added to store processing time
+        'cost', // Added to store cost details
         // 'status',
     ];
 

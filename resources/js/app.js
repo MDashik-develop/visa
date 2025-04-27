@@ -22,7 +22,7 @@ Alpine.start();
 // slick carousel
     window.$ = $;
     window.jQuery = $;
-    
+
 
     // $(document).ready(function () {
     //     $(".slider").slick({
@@ -95,7 +95,47 @@ Alpine.start();
         $('.longDescription').summernote({
             placeholder: 'Write product description...',
             tabsize: 2,
-            height: 200
+            height: 200,
+            toolbar: [
+                // Style options
+                ['style', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+
+                // Font options
+                ['font', ['fontname', 'fontsize', 'color']],
+
+                // Text alignment options
+                ['alignment', ['left', 'center', 'right', 'justify']],
+
+                // List and paragraph options
+                ['para', ['ul', 'ol', 'paragraph', 'height']],
+
+                // Insert options
+                ['insert', ['link', 'picture', 'video', 'table', 'hr', 'emoji', 'specialchar', 'codeview']],
+
+                // View options
+                ['view', ['fullscreen', 'codeview', 'help']],
+
+                // Miscellaneous options
+                ['misc', ['undo', 'redo']],
+
+                // Clipboard options
+                ['clipboard', ['cut', 'copy', 'paste', 'pasteplain']],
+
+                // Font options
+                ['fontname', ['fontname']],
+
+                // Color options
+                ['color', ['forecolor', 'backcolor']],
+
+                // Insert link, image, video, table, etc.
+                ['insert', ['link', 'picture', 'video', 'table', 'hr', 'emoji', 'specialchar']],
+
+                // Paragraph options (Spacing, Alignment, Lists)
+                ['para', ['ul', 'ol', 'paragraph', 'height']],
+
+                // Miscellaneous actions (Undo/Redo)
+                ['misc', ['undo', 'redo']]
+            ]
         });
     });
 

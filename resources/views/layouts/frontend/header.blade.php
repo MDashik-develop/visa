@@ -20,7 +20,7 @@
                     <x-nav-link :href="route('visa.assistance')" :active="request()->routeIs('visa.assistance')">
                         {{ __('Visa Assistance') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('visa.assistance')" :active="request()->routeIs('visa.assistance')">
+                    <x-nav-link :href="route('study.abroad')" :active="request()->routeIs('study.abroad')">
                         {{ __('Study Abroad') }}
                     </x-nav-link>
                 </div>

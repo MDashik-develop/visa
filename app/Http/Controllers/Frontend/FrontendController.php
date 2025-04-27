@@ -36,6 +36,27 @@ class FrontendController extends Controller
         return response()->json($visa);
     }
 
+    // Visa Assistance Result (fetch detailed visa info based on selected visa and country)
+    public function VisaAssistanceResult(Request $request)
+    {
+        // Log the incoming request to check if data is being passed correctly
+        \Log::info('Visa Assistance Result Request:', $request->all());
+
+        // Fetch the visa result using the provided visa and country
+        $visaResult = VisaType::where('name', $request->visa)
+                            ->where('countries', $request->countries)
+                            ->first();
+
+        // Check if the result exists
+        if ($visaResult) {
+            return response()->json($visaResult);  // Return the visa result as JSON
+        } else {
+            // If no result found, return an error message
+            return response()->json(['error' => 'Visa result not found'], 404);
+        }
+    }
+
+
     // send massage applications
     public function message(Request $request)
     {

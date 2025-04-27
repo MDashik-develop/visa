@@ -34,6 +34,7 @@ class VisaTypeController extends Controller
             'countries' => 'required|exists:countries,name',
             'description' => 'required|string',
             'eligibility' => 'required|string',
+            'cost' => 'required|string',
             'processing_time' => 'required|string|max:255',
         ]);
 
@@ -42,6 +43,7 @@ class VisaTypeController extends Controller
             'countries' => $request->input('countries'), // $country->countries,
             'description' => $request->input('description'),
             'eligibility' => $request->input('eligibility'),
+            'cost' => $request->input('cost'),
             'processing_time' => $request->input('processing_time'),
             // 'status' => 1, // Default status as active
         ]);
@@ -72,6 +74,7 @@ class VisaTypeController extends Controller
             'countries' => 'required',
             'description' => 'required|string',
             'eligibility' => 'required|string',
+            'cost' => 'required|string',
             'processing_time' => 'required|string|max:255',
         ]);
 
@@ -84,6 +87,7 @@ class VisaTypeController extends Controller
             'countries' => $request->input('countries'),
             'description' => $request->input('description'),
             'eligibility' => $request->input('eligibility'),
+            'cost' => $request->input('cost'),
             'processing_time' => $request->input('processing_time'),
         ]);
 

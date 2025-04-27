@@ -61,6 +61,13 @@
                             class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
                     </div>
 
+                    <!-- Cost -->
+                    <div class="mb-4">
+                        <label for="cost" class="block text-gray-700">Cost</label>
+                        <textarea name="cost" id="cost" rows="4" required
+                            class="longDescription mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                    </div>
+
                     <!-- Processing Time -->
                     <div class="mb-4">
                         <label for="processing_time" class="block text-gray-700">Processing Time</label>

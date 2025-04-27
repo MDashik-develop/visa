@@ -23,10 +23,20 @@
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
+
+    <style>
+        /* Ensure lists have proper styles */
+        ul, ol {
+            list-style-position: outside;
+            margin: 10px 0;
+            padding-left: 20px; /* Indent lists */
+        }
+    </style>
 
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -34,7 +44,7 @@
             @include('layouts.sidebar')
 
             <div class="sm:ml-64">
-         
+
                @include('layouts.header')
                   <!-- notifications news -->
                         @if (session('success') || $errors->any())
@@ -51,7 +61,7 @@
                                 @if (session('success'))
                                     {{ session('success') }}
                                 @endif
-            
+
                                 @if ($errors->any())
                                     <ul class="list-disc list-inside text-sm">
                                         @foreach ($errors->all() as $error)
@@ -61,17 +71,17 @@
                                 @endif
                             </div>
                         @endif
-         
-         
+
+
                <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-         
+
                   <!-- Page Content -->
                   <main>
                      {{ $slot }}
                   </main>
 
                </div>
-         
+
             </div>
          </div>
     </body>

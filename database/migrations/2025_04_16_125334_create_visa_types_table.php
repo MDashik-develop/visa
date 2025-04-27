@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('eligibility')->nullable(); // Eligibility criteria
             $table->longText('documents')->nullable(); // Required documents
             $table->string('processing_time')->nullable(); // Processing time (e.g., "7-10 days")
+            $table->longText('cost')->nullable(); // Detailed cost
             $table->timestamps();
         });
     }
