@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Countries;
+use App\Models\Degree;
 use App\Models\Message;
 use App\Models\Subscribe;
+use App\Models\University;
 use App\Models\VisaType;
 use App\Models\Website;
 use App\Models\WebsiteContent;
@@ -40,7 +42,7 @@ class FrontendController extends Controller
     public function VisaAssistanceResult(Request $request)
     {
         // Log the incoming request to check if data is being passed correctly
-        \Log::info('Visa Assistance Result Request:', $request->all());
+        // \Log::info('Visa Assistance Result Request:', $request->all());
 
         // Fetch the visa result using the provided visa and country
         $visaResult = VisaType::where('name', $request->visa)
@@ -95,5 +97,22 @@ class FrontendController extends Controller
         return redirect()->route('home')->with('success', 'Subscription created successfully!');
     }
 
+    // Study Abroad
+    public function StudyAbroad()
+    {
+        $countries = Countries::where('status', 1)->get();
+        return view('frontend.studyAbroad', compact('countries'));
+    }
+
+    // Study Abroad Get
+    public function StudyAbroadGet(Request $request)
+    {
+
+
+        $countires = University::where('countires', $request->countries)->get();
+        $countiresDegree = explode(',', $countires->degrees);
+        $degree = Degree::where('id', $countiresDegree)->get();
+        return response()->json($degree);
+    }
 
 }

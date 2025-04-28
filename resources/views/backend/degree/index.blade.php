@@ -1,16 +1,30 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Degrees') }}
+            </h2>
+            <a href="{{ route('admin.degree.create') }}"
+                class="bg-[#7AC37A] hover:bg-[#5a9c5a] text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2">
+                <i class="fas fa-plus"></i>
+                Add New Degree
+            </a>
+        </div>
     </x-slot>
 
 
-    <!-- Recent Users table -->
+    <!-- Recent Degrees table -->
     <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">
-            All Users
-        </h2>
+        <div class="flex justify-between mb-2">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                All Degrees
+            </h2>
+            <a href="{{ route('admin.degree.create') }}"
+                class="bg-indigo-600 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-2">
+                <i class="fas fa-plus"></i>
+                Add New Degree
+            </a>
+        </div>
 
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
@@ -18,19 +32,19 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             scope="col">
-                            User ID
+                            ID
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             scope="col">
-                            Name
+                            Degree
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             scope="col">
-                            Email
+                            Description
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             scope="col">
-                            Role
+                            Status
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             scope="col">
@@ -40,27 +54,37 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
 
-                    @forelse ($users as $user)
+                    @forelse ($degrees as $degree)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ $user->id }}
+                                {{ $degree->id }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ $user->name }}
+                                {{ $degree->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $user->email }}
+                                {!! $degree->description !!}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $user->role }}
+                                @if ($degree->status == 1)
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Active
+                                    </span>
+                                @else
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Inactive
+                                    </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('admin.user.edit', $user->id) }}"
+                                <a href="{{ route('admin.degree.edit', $degree->id) }}"
                                     class="text-indigo-600 hover:text-indigo-900">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('admin.user.delete', $user->id) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure you want to delete this user?')"
+                                <form action="{{ route('admin.degree.delete', $degree->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this degree?')"
                                     class="inline-block">
                                     @csrf
                                     @method('DELETE')
@@ -73,7 +97,7 @@
                     @empty
                         <tr>
                             <td colspan="5" class="px-6 py-4 text-center text-gray-500">
-                                No users found.
+                                No degrees found.
                             </td>
                         </tr>
                     @endforelse
@@ -81,4 +105,5 @@
             </table>
         </div>
     </div>
+
 </x-app-layout>

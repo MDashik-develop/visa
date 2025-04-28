@@ -59,7 +59,7 @@ id="sidebar">
                    <li>
                       <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.website.content') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
                          href="{{ route('admin.website.content') }}">
-                         Website Content
+                         Web Content
                       </a>
                    </li>
              </ul>
@@ -96,6 +96,37 @@ id="sidebar">
              </ul>
           </li>
           <li>
+             <button aria-controls="countries-menu" aria-expanded="false"
+                   class="
+                   {{ Request::is('admin/countries*') ? 'bg-indigo-600 text-white' :'' }}
+                    flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-indigo-600 hover:text-white text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                   onclick="toggleDropdown('countries-menu')" type="button">
+                   <span class="flex items-center">
+                      <i class="fas fa-flag w-5 h-5">
+                      </i>
+                      <span class="ml-3">
+                         Countries's
+                      </span>
+                   </span>
+                   <i class="fas fa-chevron-down transition-transform duration-300" id="countries-menu-icon">
+                   </i>
+             </button>
+             <ul class="mt-1 ml-8 space-y-1 hidden" id="countries-menu">
+                   <li>
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.countries.index') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.countries.index') }}">
+                         All Countries
+                      </a>
+                   </li>
+                   <li>
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.countries.create') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.countries.create') }}">
+                         Create Countries
+                      </a>
+                   </li>
+             </ul>
+          </li>
+          <li>
              <button aria-controls="visa-menu" aria-expanded="false"
                    class="
                    {{ Request::is('admin/visa*') ? 'bg-indigo-600 text-white' :'' }}
@@ -127,32 +158,69 @@ id="sidebar">
              </ul>
           </li>
           <li>
-             <button aria-controls="countries-menu" aria-expanded="false"
+             <button aria-controls="visa-menu" aria-expanded="false"
                    class="
-                   {{ Request::is('admin/countries*') ? 'bg-indigo-600 text-white' :'' }}
-                    flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-indigo-600 hover:text-white text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                   onclick="toggleDropdown('countries-menu')" type="button">
+                   {{ Request::is('admin/study*') ? 'bg-indigo-600 text-white' :'' }}
+                   flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-indigo-600 hover:text-white text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                   onclick="toggleDropdown('study-menu')" type="button">
                    <span class="flex items-center">
-                      <i class="fas fa-flag w-5 h-5">
+                      <i class="fas fa-graduation-cap w-5 h-5">
                       </i>
                       <span class="ml-3">
-                         Countries's
+                         Study's
                       </span>
                    </span>
-                   <i class="fas fa-chevron-down transition-transform duration-300" id="countries-menu-icon">
+                   <i class="fas fa-chevron-down transition-transform duration-300" id="study-menu-icon">
                    </i>
              </button>
-             <ul class="mt-1 ml-8 space-y-1 hidden" id="countries-menu">
+             <ul class="mt-1 ml-8 space-y-1 hidden" id="study-menu">
                    <li>
-                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.countries.index') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
-                         href="{{ route('admin.countries.index') }}">
-                         All Countries
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.visa.index') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.study.index') }}">
+                         All Study
                       </a>
                    </li>
                    <li>
-                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.countries.create') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
-                         href="{{ route('admin.countries.create') }}">
-                         Create Countries
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.study.create') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.study.create') }}">
+                         Create Study
+                      </a>
+                   </li>
+                   <li>
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.degree.index') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.degree.index') }}">
+                         Degree's
+                      </a>
+                   </li>
+             </ul>
+          </li>
+          <li>
+             <button aria-controls="visa-menu" aria-expanded="false"
+                   class="
+                   {{ Request::is('admin/university*') ? 'bg-indigo-600 text-white' :'' }}
+                   flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-indigo-600 hover:text-white text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                   onclick="toggleDropdown('university-menu')" type="button">
+                   <span class="flex items-center">
+                      <i class="fas fa-university w-5 h-5">
+                      </i>
+                      <span class="ml-3">
+                         University's
+                      </span>
+                   </span>
+                   <i class="fas fa-chevron-down transition-transform duration-300" id="university-menu-icon">
+                   </i>
+             </button>
+             <ul class="mt-1 ml-8 space-y-1 hidden" id="university-menu">
+                   <li>
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.visa.index') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.university.index') }}">
+                         All University
+                      </a>
+                   </li>
+                   <li>
+                      <a class="block px-4 py-2 rounded-lg hover:bg-indigo-600 hover:text-white {{ Request::routeIs('admin.university.create') ? 'bg-indigo-600 text-white' : 'text-gray-700' }}"
+                         href="{{ route('admin.university.create') }}">
+                         Create University
                       </a>
                    </li>
              </ul>

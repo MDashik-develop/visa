@@ -31,10 +31,12 @@
 
     <style>
         /* Ensure lists have proper styles */
-        ul, ol {
-            list-style-position: outside;
-            margin: 10px 0;
-            padding-left: 20px; /* Indent lists */
+        main{
+            ul, ol {
+                list-style-position: outside;
+                margin: 10px 0;
+                padding-left: 20px; /* Indent lists */
+            }
         }
     </style>
 

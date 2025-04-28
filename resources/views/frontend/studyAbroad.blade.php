@@ -27,10 +27,10 @@
                             </select>
                         </div>
                         <div class="flex flex-col w-full sm:w-1/2">
-                            <label for="visa" class="font-semibold text-gray-800 mb-2">Which Visa?</label>
-                            <select id="visa" name="visa"
+                            <label for="degree" class="font-semibold text-gray-800 mb-2">Which Degree?</label>
+                            <select id="degree" name="degree"
                                 class="rounded-full border border-gray-300 px-8 py-3 text-gray-600 text-base focus:outline-none focus:ring-2 focus:ring-[#7AC37A]">
-                                <option value="">Select a visa type</option>
+                                <option value="">Select a degree</option>
                             </select>
                         </div>
                     </form>
@@ -339,34 +339,36 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @endpush
         <script>
-            $('#countries').on('change', function() {
-                var countries = $(this).val();
+$('#countries').on('change', function() {
+    var countries = $(this).val();
 
-                if (countries) {
-                    $.ajax({
-                        url: "{{ route('visa.assistance.get') }}",
-                        method: 'GET',
-                        data: {
-                            countries: countries
-                        },
-                        success: function(response) {
-                            $('#visa').empty();
+    if (countries) {
+        $.ajax({
+            url: "{{ route('study.abroad.get') }}",
+            method: 'GET',
+            data: {
+                countries: countries
+            },
+            success: function(response) {
+                $('#degree').empty();  // Clear previous options
 
-                            $('#visa').append('<option value="">Select Visa</option>');
-                            $.each(response, function(key, visa) {
-                                $('#visa').append('<option value="' + visa.name + '">' + visa.name +
-                                    '</option>');
-                            });
-                        },
-                        error: function() {
-                            alert('Error fetching data!');
-                        }
-                    });
-                } else {
-                    $('#visa').empty();
-                    $('#visa').append('<option value="">Select Visa</option>');
-                }
-            });
+                $('#degree').append('<option value="">Select Degree</option>');  // Add default option
+
+                // Loop through the response to add options
+                $.each(response, function(key, visa) {
+                    $('#degree').append('<option value="' + visa.id + '">' + visa.name + '</option>');
+                });
+            },
+            error: function() {
+                alert('Error fetching data!');
+            }
+        });
+    } else {
+        $('#degree').empty();
+        $('#degree').append('<option value="">Select Degree</option>');
+    }
+});
+
 
 
             $('#search-visa-btn').on('click', function(e) {
