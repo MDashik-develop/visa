@@ -74,97 +74,12 @@
             </div>
         </section>
         <!-- Visa result Section -->
-        <section class="visa-result-section-main">
+        <section class="university-result-section-main">
             <div
                 class="bg-gradient-to-tr from-indigo-100 via-white to-indigo-100 min-h-screen flex items-center justify-center p-6">
-                <article class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-300">
-                    <div class="relative bg-indigo-700 p-10 pb-20 rounded-b-3xl">
-                        <!-- Visa title will be updated here -->
-                        <h1 class="text-4xl font-extrabold text-white drop-shadow-lg max-w-3xl visa-title">
-                            <span class="visa-name"></span> in <span class="country-name"></span>
-                        </h1>
-                    </div>
+                <div class="space-y-14 w-full max-w-7xl" id="universities-list">
 
-                    <section class="p-4 sm:p-10 bg-indigo-50 space-y-12">
-                        <!-- Description will be updated here -->
-                        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-indigo-200">
-                            <h2
-                                class="text-2xl font-semibold text-indigo-900 flex items-center gap-4 mb-4 border-b-2 border-indigo-400 pb-2">
-                                <i class="fas fa-info-circle text-indigo-600 text-3xl"></i>
-                                Description
-                            </h2>
-                            <p class="text-gray-700 leading-relaxed text-justify text-lg description">
-                                No description available.
-                            </p>
-                        </div>
-
-                        <!-- Eligibility section will be updated here -->
-                        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-indigo-200">
-                            <h2
-                                class="text-2xl font-semibold text-indigo-900 flex items-center gap-4 mb-4 border-b-2 border-indigo-400 pb-2">
-                                <i class="fas fa-check-circle text-green-600 text-3xl"></i>
-                                Eligibility
-                            </h2>
-                            <p class="text-gray-700 leading-relaxed text-justify text-lg eligibility">
-                            </p>
-                        </div>
-
-                        <!-- Documents Required Section -->
-                        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-indigo-200">
-                            <h2
-                                class="text-2xl font-semibold text-indigo-900 flex items-center gap-4 mb-4 border-b-2 border-indigo-400 pb-2">
-                                <i class="fas fa-file-alt text-indigo-600 text-3xl"></i>
-                                Documents Required
-                            </h2>
-                            <ul class="list-disc pl-6 text-gray-700 text-lg documents-list">
-                                <!-- Example documents, can be dynamically added -->
-                                <li>Passport Biodata page scan copy</li>
-                                <li>Recent 3.5 cm x 4.5 cm size Photo with white background scan copy</li>
-                                <li>Visiting Card & NID</li>
-                                <li>Bank Statement for last six months & Bank Solvency Certificate</li>
-                                <li>Document indicating current location ( If Stay Outside of Bangladesh )</li>
-                            </ul>
-                        </div>
-
-
-                        <!-- Timing section will be updated here -->
-                        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-indigo-20">
-                            <h2
-                                class="text-2xl font-semibold text-indigo-900 flex items-center gap-4 mb-4 border-b-2 border-indigo-400 pb-2">
-                                <i class="fas fa-clock text-yellow-600 text-3xl"></i>
-                                Timing
-                            </h2>
-                            <p class="text-gray-700 leading-relaxed text-justify text-lg flex flex-row gap-2">
-                                <span class="processing-time"></span> Days
-                            </p>
-                        </div>
-
-                        <!-- Cost section will be updated here -->
-                        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-indigo-200">
-                            <h2
-                                class="text-2xl font-semibold text-indigo-900 flex items-center gap-4 mb-4 border-b-2 border-indigo-400 pb-2">
-                                <i class="fas fa-dollar-sign text-blue-600 text-3xl"></i>
-                                Cost
-                            </h2>
-                            <p class="text-gray-700 leading-relaxed text-justify text-lg cost">
-                            </p>
-                        </div>
-
-                    </section>
-
-                    <div
-                        class="bg-indigo-700 p-4 sm:p-8 rounded-b-3xl flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
-                        <div class="flex items-center gap-5 text-indigo-100">
-                            <span class="text-xl font-semibold tracking-wide">Country: <span
-                                    class="country-name"></span></span>
-                        </div>
-                        <a class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-indigo-900 font-semibold rounded-full px-8 py-4 shadow-lg transition duration-300 transform hover:-translate-y-1"
-                            href="#">
-                            <i class="fas fa-file-alt text-xl"></i>
-                            Apply Now
-                        </a>
-                    </div>
-                </article>
+                </div>
             </div>
         </section>
 
@@ -308,11 +223,12 @@
         </section>
 
         <style>
-            .visa-result-section-main {
+            .university-result-section-main {
                 display: none;
             }
 
-            .eligibility, .cost {
+            .eligibility,
+            .cost {
 
                 /* List style */
                 ul {
@@ -333,41 +249,63 @@
                     /* Converts space-y-3 (0.75rem is usually the spacing for space-y-3 in Tailwind) */
                 }
             }
+
+            /* Button shine animation */
+            @keyframes shine {
+                0% {
+                    background-position: -200% 0;
+                }
+
+                100% {
+                    background-position: 200% 0;
+                }
+            }
+
+            .btn-shine {
+                background: linear-gradient(90deg,
+                        #4f46e5 25%,
+                        #a5b4fc 50%,
+                        #4f46e5 75%);
+                background-size: 200% 100%;
+                animation: shine 3s linear infinite;
+            }
         </style>
 
         @push('scripts')
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @endpush
         <script>
-$('#countries').on('change', function() {
-    var countries = $(this).val();
+            $('#countries').on('change', function() {
+                var countries = $(this).val();
 
-    if (countries) {
-        $.ajax({
-            url: "{{ route('study.abroad.get') }}",
-            method: 'GET',
-            data: {
-                countries: countries
-            },
-            success: function(response) {
-                $('#degree').empty();  // Clear previous options
+                if (countries) {
+                    $.ajax({
+                        url: "{{ route('study.abroad.get') }}",
+                        method: 'GET',
+                        data: {
+                            countries: countries
+                        },
+                        success: function(response) {
+                            $('#degree').empty(); // Clear previous options
 
-                $('#degree').append('<option value="">Select Degree</option>');  // Add default option
+                            $('#degree').append(
+                                '<option value="">Select Degree</option>'); // Add default option
 
-                // Loop through the response to add options
-                $.each(response, function(key, visa) {
-                    $('#degree').append('<option value="' + visa.id + '">' + visa.name + '</option>');
-                });
-            },
-            error: function() {
-                alert('Error fetching data!');
-            }
-        });
-    } else {
-        $('#degree').empty();
-        $('#degree').append('<option value="">Select Degree</option>');
-    }
-});
+                            // Loop through the response to add options
+                            $.each(response, function(key, visa) {
+                                $('#degree').append('<option value="' + visa.id + '">' + visa.name +
+                                    '</option>');
+                            });
+                        },
+                        error: function() {
+                            alert('Error fetching data!');
+                        }
+                    });
+                } else {
+                    $('#degree').empty();
+                    $('#degree').append('<option value="">Select Degree</option>');
+                }
+            });
 
 
 
@@ -375,39 +313,72 @@ $('#countries').on('change', function() {
                 e.preventDefault();
 
                 var countries = $('#countries').val();
-                var visa = $('#visa').val();
+                var degree = $('#degree').val();
 
-                if (countries && visa) {
+                if (countries && degree) {
                     $.ajax({
-                        url: "{{ route('visa.assistance.result') }}",
+                        url: "{{ route('study.abroad.result') }}",
                         method: 'GET',
                         data: {
-                            visa: visa,
+                            degree: degree,
                             countries: countries
                         },
-                        success: function(result) {
-                            console.log(result);
+                        success: function(universities) {
+                            console.log(universities);
 
-                            if (result && result.name) {
-                                $(".visa-name").text(result.name);
-                                $(".country-name").text(result.countries);
-                                $(".description").html(result.description || "No description available.");
-                                $(".eligibility").html(result.eligibility ||
-                                    "No eligibility info available.");
-                                $(".cost").html(result.cost ||
-                                    "No cost info available.");
-                                $(".processing-time").html(result.processing_time ||
-                                    "No timing info available.");
+                            if (universities.length > 0) {
+                                $('#universities-list').empty(); // Clear previous results
+
+                                universities.forEach(function(university) {
+                                    // Generate HTML for each university dynamically
+                                    var degreeNames = university.degree_names.join(
+                                        ', '); // Join the degree names into a string
+
+                                    var imageUrl = '{{ asset('storage/') }}' + '/' + university
+                                        .image;
+                                    var universityHtml =
+                                        `
+                                            <article class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
+                                                <div class="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-tr from-indigo-400 to-indigo-200 opacity-30 blur-3xl pointer-events-none sm:-left-16"></div>
+                                                <div class="flex-shrink-0 w-36 h-36 rounded-full bg-indigo-50 border-8 border-indigo-300 shadow-lg flex items-center justify-center transition-transform duration-500 hover:scale-110 z-10">
+                                                    <img src="${imageUrl}" alt="Logo of ${university.name}" class="w-28 h-28 rounded-full object-contain drop-shadow-md" />
+                                                </div>
+                                                <div class="flex flex-col flex-grow max-w-xl z-10 min-h-[144px] justify-between">
+                                                    <div>
+                                                        <h3 class="text-4xl font-extrabold text-indigo-900 mb-3 drop-shadow-md tracking-wide">${university.name}</h3>
+                                                        <p class="text-indigo-700 font-semibold mb-2 flex items-center space-x-3 text-lg">
+                                                            <i class="fas fa-globe-americas text-indigo-500 text-xl"></i>
+                                                            <span>Country: ${university.countries}</span>
+                                                        </p>
+                                                        <p class="text-indigo-600 mb-4 flex items-center space-x-3 text-lg">
+                                                            <i class="fas fa-graduation-cap text-indigo-400 text-xl"></i>
+                                                            <span>Degrees: ${degreeNames}</span>
+                                                        </p>
+                                                        <p class="text-gray-800 leading-relaxed text-lg drop-shadow-sm">
+                                                            ${university.short_intro || 'No description available.'}
+                                                        </p>
+                                                    </div>
+                                                    <button class="mt-6 self-start relative overflow-hidden rounded-full px-8 py-3 font-semibold text-white shadow-lg bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-400 focus:ring-offset-2 transition-colors duration-300 btn-shine" aria-label="View details about ${university.name}">
+                                                        View Details
+                                                        <i class="fas fa-arrow-right ml-1 text-white opacity-80 transition-transform duration-300"></i>
+                                                    </button>
+                                                </div>
+                                            </article>
+                                        `;
+
+                                    // Append the generated HTML to the universities list
+                                    $('#universities-list').append(universityHtml);
+                                });
 
                                 // Show the result section
-                                $('.visa-result-section-main').show();
+                                $('.university-result-section-main').show();
                             } else {
-                                alert("Visa result not found or invalid response!");
+                                alert("No universities found or invalid response!");
                             }
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
-                            alert('Error fetching visa result! ' + error);
+                            alert('Error fetching degree result! ' + error);
                         }
                     });
                 }

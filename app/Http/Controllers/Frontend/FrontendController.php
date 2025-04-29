@@ -104,15 +104,64 @@ class FrontendController extends Controller
         return view('frontend.studyAbroad', compact('countries'));
     }
 
-    // Study Abroad Get
+    // // Study Abroad Get
     public function StudyAbroadGet(Request $request)
     {
+    //     $countires = University::where('countires', $request)->get();
+    //     $countiresDegree = explode(',', $countires->degrees);
+    //     $degree = Degree::where('name', $countiresDegree)->get();
+    //     return response()->json($degree);
+        $universities = University::where('countries', $request->countries)->get();
+
+        // Initialize an array to hold the degrees
+        $degreeIds = [];
+
+        // Loop through universities to collect degree IDs
+        foreach ($universities as $university) {
+            $degreeIds = array_merge($degreeIds, explode(',', $university->degrees)); // Merge degrees from each university
+        }
+
+        // Retrieve the degrees based on the collected IDs
+        $degrees = Degree::whereIn('id', $degreeIds)->get();
+
+        // Return the degrees as a JSON response
+        return response()->json($degrees);
 
 
-        $countires = University::where('countires', $request->countries)->get();
-        $countiresDegree = explode(',', $countires->degrees);
-        $degree = Degree::where('id', $countiresDegree)->get();
-        return response()->json($degree);
+    }
+
+    // Study Abroad Result
+    public function StudyAbroadResult(Request $request)
+    {
+        // Query for universities matching the selected country and degree
+        $universities = University::where('countries', $request->countries)
+                                    ->whereRaw("FIND_IN_SET(?, degrees)", [$request->degree])
+                                    ->get();
+
+        // Initialize an array to hold the degrees
+        $degreeIds = [];
+        foreach ($universities as $university) {
+            $degreeIds = array_merge($degreeIds, explode(',', $university->degrees)); // Merge degrees from each university
+        }
+
+        // Retrieve the degree names based on the collected IDs
+        $degrees = Degree::whereIn('id', $degreeIds)->get()->pluck('name', 'id'); // Pluck degree names indexed by ID
+
+        // Add degree names to the universities' degree fields
+        $universities->each(function ($university) use ($degrees) {
+            $degreeIds = explode(',', $university->degrees);
+            $university->degree_names = array_map(function ($id) use ($degrees) {
+                return $degrees[$id] ?? 'Unknown Degree'; // Fetch degree name or fallback to 'Unknown Degree'
+            }, $degreeIds);
+        });
+
+        // Check if universities are found
+        if ($universities->isEmpty()) {
+            return response()->json(['message' => 'No universities found for the selected country and degree.'], 404);
+        }
+
+        // Return the universities as a JSON response, with degree names included
+        return response()->json($universities);
     }
 
 }
