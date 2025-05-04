@@ -174,4 +174,22 @@ class FrontendController extends Controller
     {
         return view('frontend.about');
     }
+
+
+    // ======== Contact =========
+
+    //contact page
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+
+    // ======== Pay Bil =========
+
+    //pay bill page
+    public function payBil()
+    {
+        return view('frontend.paybil');
+    }
 }
