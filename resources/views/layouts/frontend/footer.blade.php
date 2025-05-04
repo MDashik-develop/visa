@@ -36,7 +36,7 @@
             </h3>
             <ul class="space-y-5 text-gray-300 text-base">
                 <li>
-                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="#">
+                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="/about">
                         <svg class="w-5 h-5 text-[#00b4d8] flex-shrink-0" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="#">
+                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="/visa-assistance">
                         <svg class="w-5 h-5 text-[#00b4d8] flex-shrink-0" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="#">
+                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="/study-abroad">
                         <svg class="w-5 h-5 text-[#00b4d8] flex-shrink-0" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="#">
+                    <a class="flex items-center space-x-3 hover:text-white transition-colors" href="/contact">
                         <svg class="w-5 h-5 text-[#00b4d8] flex-shrink-0" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">

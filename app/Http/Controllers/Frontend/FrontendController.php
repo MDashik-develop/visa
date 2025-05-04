@@ -164,4 +164,14 @@ class FrontendController extends Controller
         return response()->json($universities);
     }
 
+
+
+
+    // ======== About =========
+
+    //about page
+    public function about()
+    {
+        return view('frontend.about');
+    }
 }
