@@ -10,7 +10,8 @@ Route::get('/pay-bil', [FrontendController::class, 'payBil'])->name('pay.bil');
 
 // =============== Visa Assistance ===============
     Route::get('/visa-assistance', [FrontendController::class, 'VisaAssistance'])->name('visa.assistance');
-    Route::get('/visa-assistance/get', [FrontendController::class, 'VisaAssistanceGet'])->name('visa.assistance.get');
+    Route::get('/visa-assistance/get', [FrontendController::class, 'VisaAssistanceGetByCountries'])->name('visa.assistance.get.by.countries');
+    // Route::get('/visa-assistance/get', [FrontendController::class, 'VisaAssistanceGet'])->name('visa.assistance.get');
     Route::get('/visa-assistance/result', [FrontendController::class, 'VisaAssistanceResult'])->name('visa.assistance.result');
 
 // =============== Study Abroad ===============

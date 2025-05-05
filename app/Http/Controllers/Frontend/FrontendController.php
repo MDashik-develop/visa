@@ -97,6 +97,9 @@ class FrontendController extends Controller
         return redirect()->route('home')->with('success', 'Subscription created successfully!');
     }
 
+
+
+    //=========== Study Abroad ============
     // Study Abroad
     public function StudyAbroad()
     {
@@ -104,29 +107,21 @@ class FrontendController extends Controller
         return view('frontend.studyAbroad', compact('countries'));
     }
 
-    // // Study Abroad Get
-    public function StudyAbroadGet(Request $request)
+    // Study Abroad Get bu countires
+    public function VisaAssistanceGetByCountries(Request $request)
     {
-    //     $countires = University::where('countires', $request)->get();
-    //     $countiresDegree = explode(',', $countires->degrees);
-    //     $degree = Degree::where('name', $countiresDegree)->get();
-    //     return response()->json($degree);
+
         $universities = University::where('countries', $request->countries)->get();
 
-        // Initialize an array to hold the degrees
         $degreeIds = [];
 
-        // Loop through universities to collect degree IDs
         foreach ($universities as $university) {
-            $degreeIds = array_merge($degreeIds, explode(',', $university->degrees)); // Merge degrees from each university
+            $degreeIds = array_merge($degreeIds, explode(',', $university->degrees));
         }
 
-        // Retrieve the degrees based on the collected IDs
         $degrees = Degree::whereIn('id', $degreeIds)->get();
 
-        // Return the degrees as a JSON response
-        return response()->json($degrees);
-
+        return response()->json(['universities' => $universities, 'degrees' => $degrees]);
 
     }
 

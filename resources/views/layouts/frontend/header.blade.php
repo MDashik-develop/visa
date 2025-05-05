@@ -23,12 +23,12 @@
                     <x-nav-link :href="route('study.abroad')" :active="request()->routeIs('study.abroad')">
                         {{ __('Study Abroad') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                    {{-- <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About Us') }}
                     </x-nav-link>
                     <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                         {{ __('Contact Us') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     <x-nav-link :href="route('pay.bil')" :active="request()->routeIs('pay.bil')">
                         {{ __('Pay Bil') }}
                     </x-nav-link>
