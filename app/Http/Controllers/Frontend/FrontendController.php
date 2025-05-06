@@ -107,23 +107,28 @@ class FrontendController extends Controller
         return view('frontend.studyAbroad', compact('countries'));
     }
 
-    // Study Abroad Get bu countires
-    public function VisaAssistanceGetByCountries(Request $request)
-    {
+ // Study Abroad Get bu countires
+ public function VisaAssistanceGetByCountries(Request $request)
+ {
+     $universities = University::where('countries', $request->countries)->get();
 
-        $universities = University::where('countries', $request->countries)->get();
+     $universitiesWithDegrees = $universities->map(function ($university) {
+         $degreeIds = [];
+         if ($university->degrees) {
+             $degreeIds = explode(',', $university->degrees);
+         }
 
-        $degreeIds = [];
+         // Fetch the actual degree models based on the IDs
+         $degrees = Degree::whereIn('id', $degreeIds)->pluck('name')->toArray();
 
-        foreach ($universities as $university) {
-            $degreeIds = array_merge($degreeIds, explode(',', $university->degrees));
-        }
+         $university->degree_names = $degrees; // Now 'degree_names' will be an array of names
+         return $university;
+     });
 
-        $degrees = Degree::whereIn('id', $degreeIds)->get();
+     $allDegrees = Degree::all(); // We still fetch all degrees for populating the degree dropdown
 
-        return response()->json(['universities' => $universities, 'degrees' => $degrees]);
-
-    }
+     return response()->json(['universities' => $universitiesWithDegrees, 'degrees' => $allDegrees]);
+ }
 
     // Study Abroad Result
     public function StudyAbroadResult(Request $request)
