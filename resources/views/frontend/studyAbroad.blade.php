@@ -308,7 +308,7 @@ $('#countries').on('change', function() {
 
                         var imageUrl = '{{ asset('storage/') }}' + '/' + university.image;
                         var universityHtml = `
-                            <article class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
+                            <a href="/university/${university.id}" class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
                                 <div class="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-tr from-indigo-400 to-indigo-200 opacity-30 blur-3xl pointer-events-none sm:-left-16"></div>
                                 <div class="flex-shrink-0 w-36 h-36 rounded-full bg-indigo-50 border-8 border-indigo-300 shadow-lg flex items-center justify-center transition-transform duration-500 hover:scale-110 z-10">
                                     <img src="${imageUrl}" alt="Logo of ${university.name}" class="w-28 h-28 rounded-full object-contain drop-shadow-md" />
@@ -333,7 +333,7 @@ $('#countries').on('change', function() {
                                         <i class="fas fa-arrow-right ml-1 text-white opacity-80 transition-transform duration-300"></i>
                                     </button>
                                 </div>
-                            </article>
+                            </a>
                         `;
                         $('#universities-list').append(universityHtml);
                     });
@@ -387,7 +387,7 @@ $('#countries').on('change', function() {
                                         .image;
                                     var universityHtml =
                                         `
-                                    <article class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
+                                    <a href="/university/${university.id}" class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
                                         <div class="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-tr from-indigo-400 to-indigo-200 opacity-30 blur-3xl pointer-events-none sm:-left-16"></div>
                                         <div class="flex-shrink-0 w-36 h-36 rounded-full bg-indigo-50 border-8 border-indigo-300 shadow-lg flex items-center justify-center transition-transform duration-500 hover:scale-110 z-10">
                                             <img src="${imageUrl}" alt="Logo of ${university.name}" class="w-28 h-28 rounded-full object-contain drop-shadow-md" />
@@ -412,7 +412,7 @@ $('#countries').on('change', function() {
                                                 <i class="fas fa-arrow-right ml-1 text-white opacity-80 transition-transform duration-300"></i>
                                             </button>
                                         </div>
-                                    </article>
+                                    </a>
                                 `;
 
                                     // Append the generated HTML to the universities list

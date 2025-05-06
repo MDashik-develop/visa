@@ -7,6 +7,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::get('/pay-bil', [FrontendController::class, 'payBil'])->name('pay.bil');
+Route::get('/university/{id}', [FrontendController::class, 'universityView'])->name('university');
 
 // =============== Visa Assistance ===============
     Route::get('/visa-assistance', [FrontendController::class, 'VisaAssistance'])->name('visa.assistance');

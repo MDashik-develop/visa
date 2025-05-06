@@ -24,41 +24,6 @@ class FrontendController extends Controller
         return view('frontend.home', compact('sliders', 'website'));
     }
 
-    // Visa Assistance
-    public function VisaAssistance(Request $request)
-    {
-        $countries = Countries::where('status', 1)->get();
-        return view('frontend.visaAssistance', compact('countries'));
-    }
-
-    // Visa Assistance Get
-    public function VisaAssistanceGet(Request $request)
-    {
-        $visa = VisaType::where('countries', $request->countries)->get();
-        return response()->json($visa);
-    }
-
-    // Visa Assistance Result (fetch detailed visa info based on selected visa and country)
-    public function VisaAssistanceResult(Request $request)
-    {
-        // Log the incoming request to check if data is being passed correctly
-        // \Log::info('Visa Assistance Result Request:', $request->all());
-
-        // Fetch the visa result using the provided visa and country
-        $visaResult = VisaType::where('name', $request->visa)
-                            ->where('countries', $request->countries)
-                            ->first();
-
-        // Check if the result exists
-        if ($visaResult) {
-            return response()->json($visaResult);  // Return the visa result as JSON
-        } else {
-            // If no result found, return an error message
-            return response()->json(['error' => 'Visa result not found'], 404);
-        }
-    }
-
-
     // send massage applications
     public function message(Request $request)
     {
@@ -99,109 +64,157 @@ class FrontendController extends Controller
 
 
 
+    //=========== Visa Assistance ============
+        // Visa Assistance
+        public function VisaAssistance(Request $request)
+        {
+            $countries = Countries::where('status', 1)->get();
+            return view('frontend.visaAssistance', compact('countries'));
+        }
+
+        // Visa Assistance Get
+        public function VisaAssistanceGet(Request $request)
+        {
+            $visa = VisaType::where('countries', $request->countries)->get();
+            return response()->json($visa);
+        }
+
+        // Visa Assistance Result (fetch detailed visa info based on selected visa and country)
+        public function VisaAssistanceResult(Request $request)
+        {
+            // Log the incoming request to check if data is being passed correctly
+            // \Log::info('Visa Assistance Result Request:', $request->all());
+
+            // Fetch the visa result using the provided visa and country
+            $visaResult = VisaType::where('name', $request->visa)
+                                ->where('countries', $request->countries)
+                                ->first();
+
+            // Check if the result exists
+            if ($visaResult) {
+                return response()->json($visaResult);  // Return the visa result as JSON
+            } else {
+                // If no result found, return an error message
+                return response()->json(['error' => 'Visa result not found'], 404);
+            }
+        }
+
+
+
     //=========== Study Abroad ============
-    // Study Abroad
-    public function StudyAbroad()
-    {
-        $countries = Countries::where('status', 1)->get();
-        return view('frontend.studyAbroad', compact('countries'));
-    }
+        // Study Abroad
+        public function StudyAbroad()
+        {
+            $countries = Countries::where('status', 1)->get();
+            return view('frontend.studyAbroad', compact('countries'));
+        }
 
-    // Study Abroad Get bu countires
-    public function VisaAssistanceGetByCountries(Request $request)
-    {
-        $universities = University::where('countries', $request->countries)->get();
+        // Study Abroad Get bu countires
+        public function VisaAssistanceGetByCountries(Request $request)
+        {
+            $universities = University::where('countries', $request->countries)->get();
 
-        $universitiesWithDegrees = $universities->map(function ($university) {
-            $degreeIds = [];
-            if ($university->degrees) {
-                $degreeIds = explode(',', $university->degrees);
+            $universitiesWithDegrees = $universities->map(function ($university) {
+                $degreeIds = [];
+                if ($university->degrees) {
+                    $degreeIds = explode(',', $university->degrees);
+                }
+
+                // Fetch the actual degree models based on the IDs
+                $degrees = Degree::whereIn('id', $degreeIds)->pluck('name')->toArray();
+
+                $university->degree_names = $degrees; // Now 'degree_names' will be an array of names
+                return $university;
+            });
+
+
+
+
+            $degreeIdsSelect = [];
+
+            foreach ($universities as $university) {
+                $degreeIdsSelect = array_merge($degreeIdsSelect, explode(',', $university->degrees));
             }
 
-            // Fetch the actual degree models based on the IDs
-            $degrees = Degree::whereIn('id', $degreeIds)->pluck('name')->toArray();
+            $degreesSelect = Degree::whereIn('id', $degreeIdsSelect)->get();
 
-            $university->degree_names = $degrees; // Now 'degree_names' will be an array of names
-            return $university;
-        });
+            $allDegrees = Degree::all(); // We still fetch all degrees for populating the degree dropdown
 
-
-
-
-        $degreeIdsSelect = [];
-
-        foreach ($universities as $university) {
-            $degreeIdsSelect = array_merge($degreeIdsSelect, explode(',', $university->degrees));
+            $degrees1 = Degree::whereIn('id', $degreeIdsSelect)->get();
+            return response()->json(['degreesSelect' => $degreesSelect, 'universities' => $universitiesWithDegrees, 'degrees' => $allDegrees]);
         }
 
-        $degreesSelect = Degree::whereIn('id', $degreeIdsSelect)->get();
+        // Study Abroad Result
+        public function StudyAbroadResult(Request $request)
+        {
+            // Query for universities matching the selected country and degree
+            $universities = University::where('countries', $request->countries)
+                                        ->whereRaw("FIND_IN_SET(?, degrees)", [$request->degree])
+                                        ->get();
 
-        $allDegrees = Degree::all(); // We still fetch all degrees for populating the degree dropdown
+            // Initialize an array to hold the degrees
+            $degreeIds = [];
+            foreach ($universities as $university) {
+                $degreeIds = array_merge($degreeIds, explode(',', $university->degrees)); // Merge degrees from each university
+            }
 
-        $degrees1 = Degree::whereIn('id', $degreeIdsSelect)->get();
-        return response()->json(['degreesSelect' => $degreesSelect, 'universities' => $universitiesWithDegrees, 'degrees' => $allDegrees]);
-    }
+            // Retrieve the degree names based on the collected IDs
+            $degrees = Degree::whereIn('id', $degreeIds)->get()->pluck('name', 'id'); // Pluck degree names indexed by ID
 
-    // Study Abroad Result
-    public function StudyAbroadResult(Request $request)
-    {
-        // Query for universities matching the selected country and degree
-        $universities = University::where('countries', $request->countries)
-                                    ->whereRaw("FIND_IN_SET(?, degrees)", [$request->degree])
-                                    ->get();
+            // Add degree names to the universities' degree fields
+            $universities->each(function ($university) use ($degrees) {
+                $degreeIds = explode(',', $university->degrees);
+                $university->degree_names = array_map(function ($id) use ($degrees) {
+                    return $degrees[$id] ?? 'Unknown Degree'; // Fetch degree name or fallback to 'Unknown Degree'
+                }, $degreeIds);
+            });
 
-        // Initialize an array to hold the degrees
-        $degreeIds = [];
-        foreach ($universities as $university) {
-            $degreeIds = array_merge($degreeIds, explode(',', $university->degrees)); // Merge degrees from each university
+            // Check if universities are found
+            if ($universities->isEmpty()) {
+                return response()->json(['message' => 'No universities found for the selected country and degree.'], 404);
+            }
+
+            // Return the universities as a JSON response, with degree names included
+            return response()->json($universities);
         }
-
-        // Retrieve the degree names based on the collected IDs
-        $degrees = Degree::whereIn('id', $degreeIds)->get()->pluck('name', 'id'); // Pluck degree names indexed by ID
-
-        // Add degree names to the universities' degree fields
-        $universities->each(function ($university) use ($degrees) {
-            $degreeIds = explode(',', $university->degrees);
-            $university->degree_names = array_map(function ($id) use ($degrees) {
-                return $degrees[$id] ?? 'Unknown Degree'; // Fetch degree name or fallback to 'Unknown Degree'
-            }, $degreeIds);
-        });
-
-        // Check if universities are found
-        if ($universities->isEmpty()) {
-            return response()->json(['message' => 'No universities found for the selected country and degree.'], 404);
-        }
-
-        // Return the universities as a JSON response, with degree names included
-        return response()->json($universities);
-    }
 
 
 
 
     // ======== About =========
 
-    //about page
-    public function about()
-    {
-        return view('frontend.about');
-    }
+        //about page
+        public function about()
+        {
+            return view('frontend.about');
+        }
 
 
     // ======== Contact =========
 
-    //contact page
-    public function contact()
-    {
-        return view('frontend.contact');
-    }
+        //contact page
+        public function contact()
+        {
+            return view('frontend.contact');
+        }
 
 
     // ======== Pay Bil =========
 
-    //pay bill page
-    public function payBil()
-    {
-        return view('frontend.paybil');
-    }
+        //pay bill page
+        public function payBil()
+        {
+            return view('frontend.paybil');
+        }
+
+
+    // ======== University View =========
+
+        //university view page
+        public function universityView(Request $request)
+        {
+            $university = University::find($request->id);
+            $degrees = Degree::whereIn('id', explode(',', $university->degrees))->get();
+            return view('frontend.university', compact('university', 'degrees'));
+        }
 }
