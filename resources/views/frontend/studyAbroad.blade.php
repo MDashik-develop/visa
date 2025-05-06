@@ -76,7 +76,7 @@
         <!-- Visa result Section -->
         <section class="university-result-section-main">
             <div
-                class="bg-gradient-to-tr from-indigo-100 via-white to-indigo-100 min-h-screen flex items-center justify-center p-6">
+                class="bg-gradient-to-tr from-indigo-100 via-white to-indigo-100 h-min py-14 flex items-center justify-center p-6">
                 <div class="universities-list  space-y-14 w-full max-w-7xl" id="universities-list">
 
                 </div>
@@ -267,7 +267,7 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @endpush
         <script>
-           $('#countries').on('change', function() {
+$('#countries').on('change', function() {
     var countries = $(this).val();
 
     if (countries) {
@@ -281,8 +281,8 @@
                 $('#degree').empty();
                 $('#degree').append('<option value="">Select Degree</option>');
 
-                if (response.degrees && response.degrees.length > 0) {
-                    $.each(response.degrees, function(key, degree) {
+                if (response.degreesSelect && response.degreesSelect.length > 0) {
+                    $.each(response.degreesSelect, function(key, degree) {
                         $('#degree').append('<option value="' + degree.id + '">' + degree.name + '</option>');
                     });
                 } else {
@@ -294,48 +294,53 @@
 
                 console.log(response.universities);
 
-                // Clear any existing university listings before adding new ones
+                // Clear any existing content in the universities list
                 $('#universities-list').empty();
 
-                response.universities.forEach(function(university) {
-                    var degreeNames = '';
-                    if (university.degree_names && Array.isArray(university.degree_names)) {
-                        degreeNames = university.degree_names.join(', ');
-                    } else {
-                        degreeNames = 'No degrees listed';
-                    }
+                if (response.universities && response.universities.length > 0) {
+                    response.universities.forEach(function(university) {
+                        var degreeNames = '';
+                        if (university.degree_names && Array.isArray(university.degree_names)) {
+                            degreeNames = university.degree_names.join(', ');
+                        } else {
+                            degreeNames = 'No degrees listed';
+                        }
 
-                    var imageUrl = '{{ asset('storage/') }}' + '/' + university.image;
-                    var universityHtml = `
-                        <article class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
-                            <div class="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-tr from-indigo-400 to-indigo-200 opacity-30 blur-3xl pointer-events-none sm:-left-16"></div>
-                            <div class="flex-shrink-0 w-36 h-36 rounded-full bg-indigo-50 border-8 border-indigo-300 shadow-lg flex items-center justify-center transition-transform duration-500 hover:scale-110 z-10">
-                                <img src="${imageUrl}" alt="Logo of ${university.name}" class="w-28 h-28 rounded-full object-contain drop-shadow-md" />
-                            </div>
-                            <div class="flex flex-col flex-grow max-w-xl z-10 min-h-[144px] justify-between">
-                                <div>
-                                    <h3 class="text-4xl font-extrabold text-indigo-900 mb-3 drop-shadow-md tracking-wide">${university.name}</h3>
-                                    <p class="text-indigo-700 font-semibold mb-2 flex items-center space-x-3 text-lg">
-                                        <i class="fas fa-globe-americas text-indigo-500 text-xl"></i>
-                                        <span>Country: ${university.countries}</span>
-                                    </p>
-                                    <p class="text-indigo-600 mb-4 flex items-center space-x-3 text-lg">
-                                        <i class="fas fa-graduation-cap text-indigo-400 text-xl"></i>
-                                        <span>Degrees: ${degreeNames}</span>
-                                    </p>
-                                    <p class="text-gray-800 leading-relaxed text-lg drop-shadow-sm">
-                                        ${university.short_intro || 'No description available.'}
-                                    </p>
+                        var imageUrl = '{{ asset('storage/') }}' + '/' + university.image;
+                        var universityHtml = `
+                            <article class="flex flex-col sm:flex-row items-center sm:items-start bg-white rounded-3xl glow-indigo border border-indigo-300 p-8 gap-8 hover:shadow-indigo-600 transition-shadow duration-400 relative overflow-hidden">
+                                <div class="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-tr from-indigo-400 to-indigo-200 opacity-30 blur-3xl pointer-events-none sm:-left-16"></div>
+                                <div class="flex-shrink-0 w-36 h-36 rounded-full bg-indigo-50 border-8 border-indigo-300 shadow-lg flex items-center justify-center transition-transform duration-500 hover:scale-110 z-10">
+                                    <img src="${imageUrl}" alt="Logo of ${university.name}" class="w-28 h-28 rounded-full object-contain drop-shadow-md" />
                                 </div>
-                                <button class="mt-6 self-start relative overflow-hidden rounded-full px-8 py-3 font-semibold text-white shadow-lg bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-400 focus:ring-offset-2 transition-colors duration-300 btn-shine" aria-label="View details about ${university.name}">
-                                    View Details
-                                    <i class="fas fa-arrow-right ml-1 text-white opacity-80 transition-transform duration-300"></i>
-                                </button>
-                            </div>
-                        </article>
-                    `;
-                    $('#universities-list').append(universityHtml);
-                });
+                                <div class="flex flex-col flex-grow max-w-xl z-10 min-h-[144px] justify-between">
+                                    <div>
+                                        <h3 class="text-4xl font-extrabold text-indigo-900 mb-3 drop-shadow-md tracking-wide">${university.name}</h3>
+                                        <p class="text-indigo-700 font-semibold mb-2 flex items-center space-x-3 text-lg">
+                                            <i class="fas fa-globe-americas text-indigo-500 text-xl"></i>
+                                            <span>Country: ${university.countries}</span>
+                                        </p>
+                                        <p class="text-indigo-600 mb-4 flex items-center space-x-3 text-lg">
+                                            <i class="fas fa-graduation-cap text-indigo-400 text-xl"></i>
+                                            <span>Degrees: ${degreeNames}</span>
+                                        </p>
+                                        <p class="text-gray-800 leading-relaxed text-lg drop-shadow-sm">
+                                            ${university.short_intro || 'No description available.'}
+                                        </p>
+                                    </div>
+                                    <button class="mt-6 self-start relative overflow-hidden rounded-full px-8 py-3 font-semibold text-white shadow-lg bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-400 focus:ring-offset-2 transition-colors duration-300 btn-shine" aria-label="View details about ${university.name}">
+                                        View Details
+                                        <i class="fas fa-arrow-right ml-1 text-white opacity-80 transition-transform duration-300"></i>
+                                    </button>
+                                </div>
+                            </article>
+                        `;
+                        $('#universities-list').append(universityHtml);
+                    });
+                } else {
+                    // If no universities are returned, display the message
+                    $('#universities-list').append('<p class="text-center text-gray-800 fs-bold">No universities available in this country.</p>');
+                }
 
                 // Show the result section
                 // $('.university-result-section-main').show();
@@ -348,8 +353,9 @@
     } else {
         $('#degree').empty();
         $('#degree').append('<option value="">Select Degree</option>');
+        $('#universities-list').empty(); // Optionally clear university list if no country is selected
     }
-});
+});;
 
 
 

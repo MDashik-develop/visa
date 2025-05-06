@@ -107,28 +107,40 @@ class FrontendController extends Controller
         return view('frontend.studyAbroad', compact('countries'));
     }
 
- // Study Abroad Get bu countires
- public function VisaAssistanceGetByCountries(Request $request)
- {
-     $universities = University::where('countries', $request->countries)->get();
+    // Study Abroad Get bu countires
+    public function VisaAssistanceGetByCountries(Request $request)
+    {
+        $universities = University::where('countries', $request->countries)->get();
 
-     $universitiesWithDegrees = $universities->map(function ($university) {
-         $degreeIds = [];
-         if ($university->degrees) {
-             $degreeIds = explode(',', $university->degrees);
-         }
+        $universitiesWithDegrees = $universities->map(function ($university) {
+            $degreeIds = [];
+            if ($university->degrees) {
+                $degreeIds = explode(',', $university->degrees);
+            }
 
-         // Fetch the actual degree models based on the IDs
-         $degrees = Degree::whereIn('id', $degreeIds)->pluck('name')->toArray();
+            // Fetch the actual degree models based on the IDs
+            $degrees = Degree::whereIn('id', $degreeIds)->pluck('name')->toArray();
 
-         $university->degree_names = $degrees; // Now 'degree_names' will be an array of names
-         return $university;
-     });
+            $university->degree_names = $degrees; // Now 'degree_names' will be an array of names
+            return $university;
+        });
 
-     $allDegrees = Degree::all(); // We still fetch all degrees for populating the degree dropdown
 
-     return response()->json(['universities' => $universitiesWithDegrees, 'degrees' => $allDegrees]);
- }
+
+
+        $degreeIdsSelect = [];
+
+        foreach ($universities as $university) {
+            $degreeIdsSelect = array_merge($degreeIdsSelect, explode(',', $university->degrees));
+        }
+
+        $degreesSelect = Degree::whereIn('id', $degreeIdsSelect)->get();
+
+        $allDegrees = Degree::all(); // We still fetch all degrees for populating the degree dropdown
+
+        $degrees1 = Degree::whereIn('id', $degreeIdsSelect)->get();
+        return response()->json(['degreesSelect' => $degreesSelect, 'universities' => $universitiesWithDegrees, 'degrees' => $allDegrees]);
+    }
 
     // Study Abroad Result
     public function StudyAbroadResult(Request $request)
